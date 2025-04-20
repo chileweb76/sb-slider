@@ -50,8 +50,6 @@ if (! class_exists('SB_Slider')) {
             require_once SB_SLIDER_PATH . 'shortcodes/class.sb-slider-shortcode.php';
             $SB_Slider_Shortcode = new SB_Slider_Shortcode();
 
-            require_once SB_SLIDER_PATH . 'inc/class-tgm-plugin-activation.php';
-
             add_action("wp_enqueue_scripts", [$this, 'register_scripts'], 999);
             add_action('after_setup_theme', [$this, 'reset_parent_setup'], 11);
             add_theme_support('post-thumbnails');
@@ -143,8 +141,11 @@ if (! class_exists('SB_Slider')) {
             if (! current_user_can('manage_options')) {
                 return;
             }
-            if (isset($_GET['settings-updated'])) {
-                add_settings_error('sb_slider_options', 'sb_slider_message', esc_html__('Settings Saved', 'sb-slider'), 'success');
+            wp_nonce_field('update_your_settings', 'nonce_field');
+            if (isset($_GET['nonce_field']) && wp_verify_nonce($_GET['nonce_field'], 'update_your_settings')) {
+                if (isset($_GET['settings-updated'])) {
+                    add_settings_error('sb_slider_options', 'sb_slider_message', esc_html__('Settings Saved', 'sb-slider'), 'success');
+                }
             }
             settings_errors('sb_slider_options');
             require SB_SLIDER_PATH . 'views/settings-page.php';
@@ -166,36 +167,4 @@ if (class_exists('SB_Slider')) {
     register_uninstall_hook(__FILE__, ['SB_Slider', 'uninstall']);
 
     $SB_slider = new SB_Slider();
-}
-
-add_action('tgmpa_register', 'sb_slider_register_required_plugins');
-
-function sb_slider_register_required_plugins()
-{
-
-    $plugins = [
-
-        [
-            'name'     => 'Regenerate Thumbnails',
-            'slug'     => 'regenerate-thumbnails',
-            'required' => false,
-        ],
-
-    ];
-
-    $config = [
-        'id'           => 'sb-slider',             // Unique ID for hashing notices for multiple instances of TGMPA.
-        'default_path' => '',                      // Default absolute path to bundled plugins.
-        'menu'         => 'tgmpa-install-plugins', // Menu slug.
-        'parent_slug'  => 'plugins.php',           // Parent menu slug.
-        'capability'   => 'manage_options',        // Capability needed to view plugin install page, should be a capability associated with the parent menu used.
-        'has_notices'  => true,                    // Show admin notices or not.
-        'dismissable'  => true,                    // If false, a user cannot dismiss the nag message.
-        'dismiss_msg'  => '',                      // If 'dismissable' is false, this message will be output at top of nag.
-        'is_automatic' => false,                   // Automatically activate plugins after installation or not.
-        'message'      => '',                      // Message to output right before the plugins table.
-
-    ];
-
-    tgmpa($plugins, $config);
 }

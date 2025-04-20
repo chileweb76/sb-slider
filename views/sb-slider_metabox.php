@@ -17,7 +17,7 @@
 ?>
 
 <table class="form-table sb-slider-metabox">
-    <input type="hidden" name="sb_slider_nonce" value="<? echo wp_create_nonce( "sb_slider_nonce" ); ?>">
+    <input type="hidden" name="sb_slider_nonce" value="<?php printf('%s', esc_html(wp_create_nonce("sb_slider_nonce"))); ?>">
     <tr>
         <th>
             <label for="sb_slider_link_text_left"><?php esc_html_e('Left Button Text', 'sb-slider')?></label>

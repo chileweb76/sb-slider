@@ -164,48 +164,48 @@ p {
 }
 
 .sb_button1_color {
-  background-color:<?php echo $sb_slider_color_left ?>;
-  color:                   <?php echo $sb_slider_left_font_color ?>;
+  background-color:<?php esc_html($sb_slider_color_left, 'sb-slider')?>;
+  color:                                           <?php esc_html($sb_slider_left_font_color, 'sb-slider')?>;
     &:hover {
       box-shadow: 10px 10px 20px rgba(36, 36, 36, 0.5);
     }
 }
 
 .sb_button2_color {
-  background-color:<?php echo $sb_slider_color_center ?>;
-  color:                   <?php echo $sb_slider_center_font_color ?>;
+  background-color:<?php esc_html($sb_slider_color_center, 'sb-slider')?>;
+  color:                                           <?php esc_html($sb_slider_center_font_color, 'sb-slider')?>;
     &:hover {
       box-shadow: 10px 10px 20px rgba(36, 36, 36, 0.5);
     }
 }
 
 .sb_button3_color {
-  background-color:<?php echo $sb_slider_color_right ?>;
-  color:                   <?php echo $sb_slider_right_font_color ?>;
+  background-color:<?php esc_html($sb_slider_color_right, 'sb-slider')?>;
+  color:                                           <?php esc_html($sb_slider_right_font_color, 'sb-slider')?>;
     &:hover {
       box-shadow: 10px 10px 20px rgba(36, 36, 36, 0.5);
     }
 }
 
 .sb_button4_color {
-  background-color:<?php echo $sb_slider_color_bottom_left ?>;
-  color:                   <?php echo $sb_slider_bottom_left_font_color ?>;
+  background-color:<?php esc_html($sb_slider_color_bottom_left, 'sb-slider')?>;
+  color:                                           <?php esc_html($sb_slider_bottom_left_font_color, 'sb-slider')?>;
     &:hover {
       box-shadow: 10px 10px 20px rgba(36, 36, 36, 0.5);
     }
 }
 
 .sb_button5_color {
-  background-color:<?php echo $sb_slider_color_bottom_center ?>;
-  color:                   <?php echo $sb_slider_bottom_center_font_color ?>;
+  background-color:<?php esc_html($sb_slider_color_bottom_center, 'sb-slider')?>;
+  color:                                           <?php esc_html($sb_slider_bottom_center_font_color, 'sb-slider')?>;
     &:hover {
       box-shadow: 10px 10px 20px rgba(36, 36, 36, 0.5);
     }
 }
 
 .sb_button6_color {
-  background-color:<?php echo $sb_slider_color_bottom_right ?>;
-  color:                   <?php echo $sb_slider_bottom_right_font_color ?>;
+  background-color:<?php esc_html($sb_slider_color_bottom_right, 'sb-slider')?>;
+  color:                                           <?php esc_html($sb_slider_bottom_right_font_color, 'sb-slider')?>;
     &:hover {
       box-shadow: 10px 10px 20px rgba(36, 36, 36, 0.5);
     }

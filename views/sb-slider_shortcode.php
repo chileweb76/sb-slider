@@ -55,13 +55,14 @@
             $sb_button_bottom_right  = ['text_bottom_right' => $button_text_bottom_right, 'url_bottom_right' => $button_url_bottom_right];
 
             $sb_length = count($sb_button_left['text_left']);
+
         ?>
 
     <section class="sb_carousel">
         <div class="sb_thumbnail">
         <?php
         foreach ($sb_thumbnail as $sb_thumbnails) {?>
-            <img class="sb_thumbnail_left remove" src="<?php echo $sb_thumbnails[0] ?>" />
+            <img class="sb_thumbnail_left remove" src="<?php echo esc_html($sb_thumbnails[0], 'sb-slider') ?>" />
         <?php }?>
         </div>
         <article class="sb_main">
@@ -70,7 +71,7 @@
                 <?php
                 foreach ($sb_main_image as $sb_main_images) {?>
                 <div>
-                    <img class="sb_main_image remove" src="<?php echo $sb_main_images[0]; ?>" />
+                    <img class="sb_main_image remove" src="<?php echo esc_html($sb_main_images[0], 'sb-slider'); ?>" />
                 </div>
                 <?php
                 }?>
@@ -78,30 +79,30 @@
             </div>
             <?php
             foreach ($sb_title as $sb_titles) {?>
-                <div class="sb_title remove"><?php echo $sb_titles; ?></div>
+                <div class="sb_title remove"><?php echo esc_html($sb_titles, 'sb-slider'); ?></div>
             <?php }
             foreach ($sb_content as $sb_contents) {?>
-                <div class="sb_content remove"><?php echo $sb_contents; ?></div>
+                <div class="sb_content remove"><?php wp_kses($sb_contents, 'sb-slider'); ?></div>
             <?php }?>
             <div class="sb_store_buttons">
             <?php for ($i = 0; $i < $sb_length; $i++) {?>
-                <a class="sb_button1 remove<?php echo ! empty($sb_button_left['text_left'][$i][0]) ? ' sb_button1_color' : '' ?>" href="<?php echo esc_url($sb_button_left['url_left'][$i][0]); ?>" target="_blank"><?php echo $sb_button_left['text_left'][$i][0];} ?></a>
+                <a class="sb_button1 remove<?php echo ! empty($sb_button_left['text_left'][$i][0]) ? ' sb_button1_color' : '' ?>" href="<?php echo esc_url($sb_button_left['url_left'][$i][0]); ?>" target="_blank"><?php echo esc_html($sb_button_left['text_left'][$i][0], 'sb-slider');} ?></a>
             <?php for ($i = 0; $i < $sb_length; $i++) {?>
-                <a class="sb_button2 remove<?php echo ! empty($sb_button_center['text_center'][$i][0]) ? ' sb_button2_color' : '' ?>" href="<?php echo esc_url($sb_button_center['url_center'][$i][0]); ?>" target="_blank"><?php echo $sb_button_center['text_center'][$i][0];} ?></a>
+                <a class="sb_button2 remove<?php echo ! empty($sb_button_center['text_center'][$i][0]) ? ' sb_button2_color' : '' ?>" href="<?php echo esc_url($sb_button_center['url_center'][$i][0]); ?>" target="_blank"><?php echo esc_html($sb_button_center['text_center'][$i][0], 'sb-slider');} ?></a>
             <?php for ($i = 0; $i < $sb_length; $i++) {?>
-                <a class="sb_button3 remove<?php echo ! empty($sb_button_right['text_right'][$i][0]) ? ' sb_button3_color' : '' ?>" href="<?php echo esc_url($sb_button_right['url_right'][$i][0]); ?>"target="_blank"><?php echo $sb_button_right['text_right'][$i][0];} ?></a>
+                <a class="sb_button3 remove<?php echo ! empty($sb_button_right['text_right'][$i][0]) ? ' sb_button3_color' : '' ?>" href="<?php echo esc_url($sb_button_right['url_right'][$i][0]); ?>"target="_blank"><?php echo esc_html($sb_button_right['text_right'][$i][0], 'sb-slider');} ?></a>
             <?php for ($i = 0; $i < $sb_length; $i++) {?>
-                <a class="sb_button4 remove<?php echo ! empty($sb_button_bottom_left['text_bottom_left'][$i][0]) ? ' sb_button4_color' : '' ?>" href="<?php echo esc_url($sb_button_bottom_left['url_bottom_left'][$i][0]); ?>"target="_blank"><?php echo $sb_button_bottom_left['text_bottom_left'][$i][0];} ?></a>
+                <a class="sb_button4 remove<?php echo ! empty($sb_button_bottom_left['text_bottom_left'][$i][0]) ? ' sb_button4_color' : '' ?>" href="<?php echo esc_url($sb_button_bottom_left['url_bottom_left'][$i][0]); ?>"target="_blank"><?php echo esc_html($sb_button_bottom_left['text_bottom_left'][$i][0], 'sb-slider');} ?></a>
             <?php for ($i = 0; $i < $sb_length; $i++) {?>
-                <a class="sb_button5 remove<?php echo ! empty($sb_button_bottom_center['text_bottom_center'][$i][0]) ? ' sb_button5_color' : '' ?>" href="<?php echo esc_url($sb_button_bottom_center['url_bottom_center'][$i][0]); ?>" target="_blank"><?php echo $sb_button_bottom_center['text_bottom_center'][$i][0];} ?></a>
+                <a class="sb_button5 remove<?php echo ! empty($sb_button_bottom_center['text_bottom_center'][$i][0]) ? ' sb_button5_color' : '' ?>" href="<?php echo esc_url($sb_button_bottom_center['url_bottom_center'][$i][0]); ?>" target="_blank"><?php echo esc_html($sb_button_bottom_center['text_bottom_center'][$i][0], 'sb-slider');} ?></a>
             <?php for ($i = 0; $i < $sb_length; $i++) {?>
-                <a class="sb_button6 remove<?php echo ! empty($sb_button_bottom_right['text_bottom_right'][$i][0]) ? ' sb_button6_color' : '' ?>" href="<?php echo esc_url($sb_button_bottom_right['url_bottom_right'][$i][0]); ?>" target="_blank"><?php echo $sb_button_bottom_right['text_bottom_right'][$i][0];} ?></a>
+                <a class="sb_button6 remove<?php echo ! empty($sb_button_bottom_right['text_bottom_right'][$i][0]) ? ' sb_button6_color' : '' ?>" href="<?php echo esc_url($sb_button_bottom_right['url_bottom_right'][$i][0]); ?>" target="_blank"><?php echo esc_html($sb_button_bottom_right['text_bottom_right'][$i][0], 'sb-slider');} ?></a>
             </div>
         </article>
             <div class="sb_thumbnail">
             <?php
             foreach ($sb_thumbnail as $sb_thumbnails) {?>
-                <img class="sb_thumbnail_right remove" src="<?php echo $sb_thumbnails[0] ?>" />
+                <img class="sb_thumbnail_right remove" src="<?php echo esc_html($sb_thumbnails[0], 'sb-slider') ?>" />
 
             <?php }?>
             </div>

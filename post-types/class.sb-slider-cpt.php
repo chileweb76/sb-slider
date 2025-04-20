@@ -19,9 +19,9 @@ if (! class_exists('SB_Slider_Post_Type')) {
                 'sb-slider',
                 [
                     'label'               => esc_html__('Slider', 'sb-slider'),
-                    'description'         => esc_html__('Sliders', 'sb_slider'),
+                    'description'         => esc_html__('Sliders', 'sb-slider'),
                     'labels'              => [
-                        'name'          => esc_html__('Sliders', 'sb_slider'),
+                        'name'          => esc_html__('Sliders', 'sb-slider'),
                         'singular_name' => esc_html__('Slider', 'sb-slider'),
                     ],
                     'public'              => true,
