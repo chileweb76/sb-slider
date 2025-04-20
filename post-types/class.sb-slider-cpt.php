@@ -135,7 +135,7 @@ if (! class_exists('SB_Slider_Post_Type')) {
         public function save_post($post_id)
         {
             if (isset($_POST['sb_slider_nonce'])) {
-                if (! wp_verify_nonce($_POST['sb_slider_nonce'], 'sb_slider_nonce')) {
+                if (! wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['sb_slider_nonce'], 'sb_slider_nonce')))) {
                     return;
                 }
             }
@@ -160,12 +160,24 @@ if (! class_exists('SB_Slider_Post_Type')) {
                 $old_link_text_bottom_center = get_post_meta($post_id, 'sb_slider_link_text_bottom_center', true);
                 $old_link_text_bottom_right  = get_post_meta($post_id, 'sb_slider_link_text_bottom_right', true);
 
-                $new_link_text_left          = sanitize_text_field($_POST['sb_slider_link_text_left']);
-                $new_link_text_center        = sanitize_text_field($_POST['sb_slider_link_text_center']);
-                $new_link_text_right         = sanitize_text_field($_POST['sb_slider_link_text_right']);
-                $new_link_text_bottom_left   = sanitize_text_field($_POST['sb_slider_link_text_bottom_left']);
-                $new_link_text_bottom_center = sanitize_text_field($_POST['sb_slider_link_text_bottom_center']);
-                $new_link_text_bottom_right  = sanitize_text_field($_POST['sb_slider_link_text_bottom_right']);
+                if (empty($_POST['sb_slider_link_text_left'])) {
+                    $new_link_text_left = sanitize_text_field(wp_unslash($_POST['sb_slider_link_text_left']));
+                }
+                if (empty($_POST['sb_slider_link_text_center'])) {
+                    $new_link_text_center = sanitize_text_field(wp_unslash($_POST['sb_slider_link_text_center']));
+                }
+                if (empty($_POST['sb_slider_link_text_right'])) {
+                    $new_link_text_right = sanitize_text_field(wp_unslash($_POST['sb_slider_link_text_right']));
+                }
+                if (empty($_POST['sb_slider_link_text_bottom_left'])) {
+                    $new_link_text_bottom_left = sanitize_text_field(wp_unslash($_POST['sb_slider_link_text_bottom_left']));
+                }
+                if (empty($_POST['sb_slider_link_text_bottom_center'])) {
+                    $new_link_text_bottom_center = sanitize_text_field(wp_unslash($_POST['sb_slider_link_text_bottom_center']));
+                }
+                if (empty($_POST['sb_slider_link_text_bottom_right'])) {
+                    $new_link_text_bottom_right = sanitize_text_field(wp_unslash($_POST['sb_slider_link_text_bottom_right']));
+                }
 
                 $old_link_url_left          = get_post_meta($post_id, 'sb_slider_link_url_left', true);
                 $old_link_url_center        = get_post_meta($post_id, 'sb_slider_link_url_center', true);
@@ -174,12 +186,24 @@ if (! class_exists('SB_Slider_Post_Type')) {
                 $old_link_url_bottom_center = get_post_meta($post_id, 'sb_slider_link_url_bottom_center', true);
                 $old_link_url_bottom_right  = get_post_meta($post_id, 'sb_slider_link_url_bottom_right', true);
 
-                $new_link_url_left          = sanitize_text_field($_POST['sb_slider_link_url_left']);
-                $new_link_url_center        = sanitize_text_field($_POST['sb_slider_link_url_center']);
-                $new_link_url_right         = sanitize_text_field($_POST['sb_slider_link_url_right']);
-                $new_link_url_bottom_left   = sanitize_text_field($_POST['sb_slider_link_url_bottom_left']);
-                $new_link_url_bottom_center = sanitize_text_field($_POST['sb_slider_link_url_buttom_center']);
-                $new_link_url_bottom_right  = sanitize_text_field($_POST['sb_slider_link_url_bottom_right']);
+                if (empty($_POST['sb_slider_link_url_left'])) {
+                    $new_link_url_left = sanitize_text_field(wp_unslash($_POST['sb_slider_link_url_left']));
+                }
+                if (empty($_POST['sb_slider_link_url_center'])) {
+                    $new_link_url_center = sanitize_text_field(wp_unslash($_POST['sb_slider_link_url_center']));
+                }
+                if (empty($_POST['sb_slider_link_url_right'])) {
+                    $new_link_url_right = sanitize_text_field(wp_unslash($_POST['sb_slider_link_url_right']));
+                }
+                if (empty($_POST['sb_slider_link_url_bottom_left'])) {
+                    $new_link_url_bottom_left = sanitize_text_field(wp_unslash($_POST['sb_slider_link_url_bottom_left']));
+                }
+                if (empty($_POST['sb_slider_link_url_buttom_center'])) {
+                    $new_link_url_bottom_center = sanitize_text_field(wp_unslash($_POST['sb_slider_link_url_buttom_center']));
+                }
+                if (empty($_POST['sb_slider_link_url_bottom_right'])) {
+                    $new_link_url_bottom_right = sanitize_text_field(wp_unslash($_POST['sb_slider_link_url_bottom_right']));
+                }
 
                 update_post_meta($post_id, 'sb_slider_link_text_left', $new_link_text_left, $old_link_text_left);
                 update_post_meta($post_id, 'sb_slider_link_text_center', $new_link_text_center, $old_link_text_center);

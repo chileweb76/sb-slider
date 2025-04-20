@@ -14,7 +14,7 @@
 
             public function admin_init()
             {
-                register_setting('sb_slider_group', 'sb_slider_options', [$this, 'sb_slider_validate']);
+                register_setting('sb_slider_group', 'sb_slider_options', sanitize_text_field([$this, 'sb_slider_validate']));
 
                 //Section Settings
                 add_settings_section(

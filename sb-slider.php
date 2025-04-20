@@ -141,12 +141,11 @@ if (! class_exists('SB_Slider')) {
             if (! current_user_can('manage_options')) {
                 return;
             }
-            wp_nonce_field('update_your_settings', 'nonce_field');
-            if (isset($_GET['nonce_field']) && wp_verify_nonce($_GET['nonce_field'], 'update_your_settings')) {
-                if (isset($_GET['settings-updated'])) {
-                    add_settings_error('sb_slider_options', 'sb_slider_message', esc_html__('Settings Saved', 'sb-slider'), 'success');
-                }
+
+            if (isset($_GET['settings-updated'])) {
+                add_settings_error('sb_slider_options', 'sb_slider_message', esc_html__('Settings Saved', 'sb-slider'), 'success');
             }
+
             settings_errors('sb_slider_options');
             require SB_SLIDER_PATH . 'views/settings-page.php';
         }
