@@ -3,15 +3,14 @@
 /**
  *Plugin Name: Scrapbook Slider
  *Plugin URI:
- *Description: A slider designes to show latest product with buttons to go to stores for purchase.
+ *Description: A slider designed to show latest product with buttons to go to stores for purchase.
  *Version: 1.0
- *Requires at least: 6.7
+ *Requires at least: 6.8
  *Author: Christopher Hile
  *Author URI: https://christopherhile.com
  * License: GPL v2 or later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
- *Text Domain: sb-slider
- *Domain Path: /languages
+ *Text Domain: scrapbook-slider
  */
 
 /*
@@ -31,29 +30,31 @@ if (! defined('ABSPATH')) {
     exit;
 }
 
-if (! class_exists('SB_Slider')) {
-    class SB_Slider
+if (! class_exists('Scrapbook_Slider')) {
+    class Scrapbook_Slider
     {
         public function __construct()
         {
+
             $this->define_constants();
-            $this->load_textdomain();
 
             add_action('admin_menu', [$this, 'add_menu']);
 
-            require_once SB_SLIDER_PATH . 'post-types/class.sb-slider-cpt.php';
-            $SB_Slider_Post_Type = new SB_Slider_Post_Type();
+            require_once SCRAPBOOK_SLIDER_PATH . 'post-types/class.scrapbook-slider-cpt.php';
+            $Scrapbook_Slider_Post_Type = new Scrapbook_Slider_Post_Type();
 
-            require_once SB_SLIDER_PATH . 'class.sb-slider-settings.php';
-            $SB_Slider_Settings = new SB_Slider_Settings();
+            require_once SCRAPBOOK_SLIDER_PATH . 'class.scrapbook-slider-settings.php';
+            $Scrapbook_Slider_Settings = new Scrapbook_Slider_Settings();
 
-            require_once SB_SLIDER_PATH . 'shortcodes/class.sb-slider-shortcode.php';
-            $SB_Slider_Shortcode = new SB_Slider_Shortcode();
+            require_once SCRAPBOOK_SLIDER_PATH . 'shortcodes/class.scrapbook-slider-shortcode.php';
+            $Scrapbook_Slider_Shortcode = new Scrapbook_Slider_Shortcode();
+
+            require SCRAPBOOK_SLIDER_PATH . 'scrapbook-slider_carousel/scrapbook_slider-carousel.php';
 
             add_action("wp_enqueue_scripts", [$this, 'register_scripts'], 999);
             add_action('after_setup_theme', [$this, 'reset_parent_setup'], 11);
             add_theme_support('post-thumbnails');
-            add_image_size('sb_main_img', 400, 400);
+            add_image_size('scrapbook_main_img', 400, 400);
 
         }
 
@@ -66,9 +67,9 @@ if (! class_exists('SB_Slider')) {
 
         public function define_constants()
         {
-            define('SB_SLIDER_PATH', plugin_dir_path(__FILE__));
-            define('SB_SLIDER_URL', plugin_dir_url(__FILE__));
-            define('SB_SLIDER_VERSION', '1.0.0');
+            define('SCRAPBOOK_SLIDER_PATH', plugin_dir_path(__FILE__));
+            define('SCRAPBOOK_SLIDER_URL', plugin_dir_url(__FILE__));
+            define('SCRAPBOOK_SLIDER_VERSION', '1.0.0');
         }
 
         public static function activate()
@@ -79,16 +80,16 @@ if (! class_exists('SB_Slider')) {
         public static function deactivate()
         {
             flush_rewrite_rules();
-            unregister_post_type('sb-slider');
+            unregister_post_type('scrapbook-sliderr');
         }
 
         public static function uninstall()
         {
-            delete_option('sb_slider_options');
+            delete_option('scrapbook_slider_options');
 
             $posts = get_posts(
                 [
-                    'post_type'    => 'sb-slider',
+                    'post_type'    => 'scrapbook-slider',
                     'number_posts' => -1,
                     'post_status'  => 'any',
                 ]
@@ -99,71 +100,75 @@ if (! class_exists('SB_Slider')) {
             }
         }
 
-        public function load_textdomain()
-        {
-            load_plugin_textdomain(
-                'sb-slider',
-                false,
-                dirname(plugin_basename(__FILE__)) . '/languages/'
-            );
-        }
+
 
         public function add_menu()
         {
             add_menu_page(
-                esc_html__('Scrapbook Slider Options', 'sb-slider'),
-                esc_html__('Scrapbook Sliders', 'sb-slider'),
+                esc_html__('Scrapbook Slider Options', 'scrapbook-slider'),
+                esc_html__('Scrapbook Sliders', 'scrapbook-slider'),
                 'manage_options',
-                'sb_slider_admin',
-                [$this, 'sb_slider_settings_page'],
+                'scrapbook_slider_admin',
+                [$this, 'scrapbook_slider_settings_page'],
                 'dashicons-images-alt2'
             );
 
             add_submenu_page(
-                'sb_slider_admin',
-                esc_html__('Manage Slides', 'sb-slider'),
-                esc_html__('Manage Slides', 'sb-slider'),
+                'scrapbook_slider_admin',
+                esc_html__('Manage Slides', 'scrapbook-slider'),
+                esc_html__('Manage Slides', 'scrapbook-slider'),
                 'manage_options',
-                'edit.php?post_type=sb-slider',
+                'edit.php?post_type=scrapbook-slider',
             );
 
             add_submenu_page(
-                'sb_slider_admin',
-                esc_html__('Add New Slides', 'sb-slider'),
-                esc_html__('Add New Slides', 'sb-slider'),
+                'scrapbook_slider_admin',
+                esc_html__('Add New Slides', 'scrapbook-slider'),
+                esc_html__('Add New Slides', 'scrapbook-slider'),
                 'manage_options',
-                'post-new.php?post_type=sb-slider',
+                'post-new.php?post_type=scrapbook-slider',
             );
         }
 
-        public function sb_slider_settings_page()
+        public function scrapbook_slider_settings_page()
         {
             if (! current_user_can('manage_options')) {
                 return;
             }
+            
+            if (isset($_POST['scrapbook_slider_nonce'])) {
+                $scrapbook_slider_none = sanitize_text_field(wp_unslash($_POST['scrapbook_slider_nonce']));
+            
 
-            if (isset($_GET['settings-updated'])) {
-                add_settings_error('sb_slider_options', 'sb_slider_message', esc_html__('Settings Saved', 'sb-slider'), 'success');
+            if (empty( wp_verify_nonce($scrapbook_slider_none))) {
+                    if (isset($_GET['settings-updated'])) {
+                        add_settings_error('scrapbook_slider_options', 'scrapbook_slider_message', esc_html('Settings Saved'), 'success');
+                    }
+                
+                }
             }
-
-            settings_errors('sb_slider_options');
-            require SB_SLIDER_PATH . 'views/settings-page.php';
+            settings_errors('scrapbook_slider_options');
+            require SCRAPBOOK_SLIDER_PATH . 'views/settings-page.php';
         }
 
         public function register_scripts()
         {
 
-            wp_register_script('sb-slider-main-jq', SB_SLIDER_URL . 'sb-slider_carousel/sb_slider.js', ['jquery'], SB_SLIDER_VERSION, true);
-            wp_register_style('sb-slider-carousel', SB_SLIDER_URL . 'sb-slider_carousel/sb_slider-carousel.php', [], SB_SLIDER_VERSION, 'all');
+            wp_register_script('scrapbook-slider-main-jq', SCRAPBOOK_SLIDER_URL . 'scrapbook-slider_carousel/scrapbook_slider.js', ['jquery'], SCRAPBOOK_SLIDER_VERSION, true);
+            wp_register_style('scrapbook-slider-css', SCRAPBOOK_SLIDER_URL . 'css/style.css', [], SCRAPBOOK_SLIDER_VERSION, 'all');
+            wp_register_style('scrapbook-slider-css-map', SCRAPBOOK_SLIDER_URL . 'css/style.css.map', [], SCRAPBOOK_SLIDER_VERSION, 'all');
+
+          
+
         }
 
     }
 }
 
-if (class_exists('SB_Slider')) {
-    register_activation_hook(__FILE__, ['SB_Slider', 'activate']);
-    register_deactivation_hook(__FILE__, ['SB_Slider', 'deactivate']);
-    register_uninstall_hook(__FILE__, ['SB_Slider', 'uninstall']);
+if (class_exists('scrapbook_Slider')) {
+    register_activation_hook(__FILE__, ['Scrapbook_Slider', 'activate']);
+    register_deactivation_hook(__FILE__, ['Scrapbook_Slider', 'deactivate']);
+    register_uninstall_hook(__FILE__, ['Scrapbook_Slider', 'uninstall']);
 
-    $SB_slider = new SB_Slider();
+    $Scrapbook_slider = new Scrapbook_Slider();
 }

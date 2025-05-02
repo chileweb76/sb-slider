@@ -1,10 +1,10 @@
 <?php
-if (! class_exists('SB_Slider_Shortcode')) {
-    class SB_Slider_Shortcode
+if (! class_exists('scrapbook_Slider_Shortcode')) {
+    class Scrapbook_Slider_Shortcode
     {
         public function __construct()
         {
-            add_shortcode('sb_slider', [$this, 'add_shortcode']);
+            add_shortcode('scrapbook_slider', [$this, 'add_shortcode']);
 
         }
 
@@ -25,10 +25,12 @@ if (! class_exists('SB_Slider_Shortcode')) {
 
             ob_start();
 
-            require SB_SLIDER_PATH . 'views/sb-slider_shortcode.php';
+            require SCRAPBOOK_SLIDER_PATH . 'views/scrapbook-slider_shortcode.php';
 
-            wp_enqueue_script('sb-slider-main-jq');
-            wp_enqueue_style('sb-slider-carousel');
+            wp_enqueue_script('scrapbook-slider-main-jq');
+            wp_enqueue_style('scrapbook-slider-carousel');
+            wp_enqueue_style('scrapbook-slider-css');
+            wp_enqueue_style('scrapbook-slider-css-map');
             return ob_get_clean();
         }
 

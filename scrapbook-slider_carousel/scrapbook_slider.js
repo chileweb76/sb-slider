@@ -1,16 +1,16 @@
 jQuery(document).ready(function ($) {
   var slides = $(".index");
-  var title = $(".sb_title");
-  var content = $(".sb_content");
-  var main_image = $(".sb_main_image");
-  var thumbnailLeft = $(".sb_thumbnail_left");
-  var thumbnailRight = $(".sb_thumbnail_right");
-  var button1 = $(".sb_button1");
-  var button2 = $(".sb_button2");
-  var button3 = $(".sb_button3");
-  var button4 = $(".sb_button4");
-  var button5 = $(".sb_button5");
-  var button6 = $(".sb_button6");
+  var title = $(".scrapbook_title");
+  var content = $(".scrapbook_content");
+  var main_image = $(".scrapbook_main_image");
+  var thumbnailLeft = $(".scrapbook_thumbnail_left");
+  var thumbnailRight = $(".scrapbook_thumbnail_right");
+  var button1 = $(".scrapbook_button1");
+  var button2 = $(".scrapbook_button2");
+  var button3 = $(".scrapbook_button3");
+  var button4 = $(".scrapbook_button4");
+  var button5 = $(".scrapbook_button5");
+  var button6 = $(".scrapbook_button6");
 
   var slideIndex = 0;
   var leftIndex = 1;
