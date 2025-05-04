@@ -19,7 +19,6 @@
     true);
     
 ?>
-
 <table class="form-table scrapbook-slider-metabox">
     <tr>
         <th>

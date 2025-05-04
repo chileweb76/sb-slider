@@ -48,12 +48,37 @@
     } else {
         $scrapbook_slider_color_bottom_right = '#D3D3D3';
     }
-    $scrapbook_slider_left_font_color          = $options['scrapbook_slider_left_font_color'];
-    $scrapbook_slider_center_font_color        = $options['scrapbook_slider_center_font_color'];
-    $scrapbook_slider_right_font_color         = $options['scrapbook_slider_right_font_color'];
-    $scrapbook_slider_bottom_left_font_color   = $options['scrapbook_slider_bottom_left_font_color'];
-    $scrapbook_slider_bottom_center_font_color = $options['scrapbook_slider_bottom_center_font_color'];
-    $scrapbook_slider_bottom_right_font_color  = $options['scrapbook_slider_bottom_right_font_color'];
+    if ( ! empty($options['scrapbook_slider_left_font_color']) ) {
+      $scrapbook_slider_left_font_color      = $options['scrapbook_slider_left_font_color'];
+    } else {
+      $scrapbook_slider_left_font_color = 'black';
+    }
+    if ( ! empty($options['scrapbook_slider_center_font_color']) ) {
+      $scrapbook_slider_center_font_color      = $options['scrapbook_slider_center_font_color'];
+    } else {
+      $scrapbook_slider_center_font_color = 'black';
+    }
+    if ( ! empty($options['scrapbook_slider_right_font_color']) ) {
+      $scrapbook_slider_right_font_color      = $options['scrapbook_slider_right_font_color'];
+    } else {
+      $scrapbook_slider_right_font_color = 'black';
+    }
+    if ( ! empty($options['scrapbook_slider_bottom_left_font_color']) ) {
+      $scrapbook_slider_bottom_left_font_color      = $options['scrapbook_slider_bottom_left_font_color'];
+    } else {
+      $scrapbook_slider_bottom_left_font_color = 'black';
+    }
+    if ( ! empty($options['scrapbook_slider_bottom_center_font_color']) ) {
+      $scrapbook_slider_bottom_center_font_color      = $options['scrapbook_slider_bottom_center_font_color'];
+    } else {
+      $scrapbook_slider_bottom_center_font_color = 'black';
+    }
+    if ( ! empty($options['scrapbook_slider_bottom_right_font_color']) ) {
+      $scrapbook_slider_bottom_right_font_color      = $options['scrapbook_slider_bottom_right_font_color'];
+    } else {
+      $scrapbook_slider_bottom_right_font_color = 'black';
+    }
+    
 
     $compiler->addVariables( [
      '$scrapbook-slider-color-left' => ValueConverter::parseValue($scrapbook_slider_color_left),
@@ -113,6 +138,6 @@
 
     file_put_contents($source_scss, $compileCss);
  
-?>
+
 
 

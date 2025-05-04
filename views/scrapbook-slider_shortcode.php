@@ -59,7 +59,6 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
             $scrapbook_length = count($scrapbook_button_left['text_left']);
         ?>
-
     <section class="scrapbook_carousel">
         <div class="scrapbook_thumbnail">
         <?php
