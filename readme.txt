@@ -6,7 +6,7 @@ Stable tag: 1.0
 License: GPLv2
 Tags: carousel, slider, scrapbook
 
-Three image slider. 
+Image slider. 
 
 == Description ==
 

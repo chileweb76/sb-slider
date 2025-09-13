@@ -10,21 +10,21 @@ if (! class_exists('SB_Slider_Post_Type')) {
             add_action('init', [$this, 'create_post_type']);
             add_action('add_meta_boxes', [$this, 'add_meta_boxes']);
             add_action('save_post', [$this, 'save_post'], 10, 2);
-            add_filter('manage_sb-slider_posts_columns', [$this, 'sb_slider_cpt_columns']);
-            add_action('manage_sb-slider_posts_custom_column', [$this, 'sb_slider_custom_columns'], 10, 6);
-            add_filter('manage_edit-sb-slider_sortable_columns', [$this, 'sb_slider_sortable_columns']);
+            add_filter('manage_sb_slider_posts_columns', [$this, 'sb_slider_cpt_columns']);
+            add_action('manage_sb_slider_posts_custom_column', [$this, 'sb_slider_custom_columns'], 10, 6);
+            add_filter('manage_edit-sb_slider_sortable_columns', [$this, 'sb_slider_sortable_columns']);
         }
 
         public function create_post_type()
         {
             register_post_type(
-                'scrapbook-slider',
+                'sb_slider',
                 [
-                    'label'               => esc_html__('Slider', 'scrapbook-slider'),
-                    'description'         => esc_html__('Sliders', 'scrapbook-slider'),
+                    'label'               => esc_html__('Slider', 'sb-slider'),
+                    'description'         => esc_html__('Sliders', 'sb-slider'),
                     'labels'              => [
-                        'name'          => esc_html__('Sliders', 'scrapbook-slider'),
-                        'singular_name' => esc_html__('Slider', 'scrapbook-slider'),
+                        'name'          => esc_html__('Sliders', 'sb-slider'),
+                        'singular_name' => esc_html__('Slider', 'sb-slider'),
                     ],
                     'public'              => true,
                     'supports'            => ['title', 'editor', 'thumbnail'],
@@ -121,9 +121,9 @@ if (! class_exists('SB_Slider_Post_Type')) {
         {
             add_meta_box(
                 'sb_slider_meta_box',
-                esc_html__('Link Options', 'scrapbook-slider'),
+                esc_html__('Link Options', 'sb-slider'),
                 [$this, 'add_inner_meta_boxes'],
-                'scrapbook-slider',
+                'sb_slider',
                 'normal',
                 'high'
             );
