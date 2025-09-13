@@ -75,43 +75,59 @@ if (! class_exists('SB_Slider_Post_Type')) {
         {
             switch ($column) {
                 case 'sb_slider_link_text_left':
-                    echo esc_html(get_post_meta($post_id, 'sb_slider_link_text_left', true));
+                    echo esc_html( $this->get_meta_string( $post_id, 'sb_slider_link_text_left' ) );
                     break;
                 case 'sb_slider_link_url_left':
-                    echo esc_url(get_post_meta($post_id, 'sb_slider_link_url_left', true));
+                    echo esc_url( $this->get_meta_string( $post_id, 'sb_slider_link_url_left' ) );
                     break;
                 case 'sb_slider_link_text_center':
-                    echo esc_html(get_post_meta($post_id, 'sb_slider_link_text_center', true));
+                    echo esc_html( $this->get_meta_string( $post_id, 'sb_slider_link_text_center' ) );
                     break;
                 case 'sb_slider_link_url_center':
-                    echo esc_url(get_post_meta($post_id, 'sb_slider_link_url_center', true));
+                    echo esc_url( $this->get_meta_string( $post_id, 'sb_slider_link_url_center' ) );
                     break;
                 case 'sb_slider_link_text_right':
-                    echo esc_html(get_post_meta($post_id, 'sb_slider_link_text_right', true));
+                    echo esc_html( $this->get_meta_string( $post_id, 'sb_slider_link_text_right' ) );
                     break;
                 case 'sb_slider_link_url_right':
-                    echo esc_url(get_post_meta($post_id, 'sb_slider_link_url_right', true));
+                    echo esc_url( $this->get_meta_string( $post_id, 'sb_slider_link_url_right' ) );
                     break;
                 case 'sb_slider_link_text_bottom_left':
-                    echo esc_html(get_post_meta($post_id, 'sb_slider_link_text_bottom_left', true));
+                    echo esc_html( $this->get_meta_string( $post_id, 'sb_slider_link_text_bottom_left' ) );
                     break;
                 case 'sb_slider_link_url_bottom_left':
-                    echo esc_url(get_post_meta($post_id, 'sb_slider_link_url_bottom_left', true));
+                    echo esc_url( $this->get_meta_string( $post_id, 'sb_slider_link_url_bottom_left' ) );
                     break;
                 case 'sb_slider_link_text_bottom_center':
-                    echo esc_html(get_post_meta($post_id, 'sb_slider_link_text_bottom_center', true));
+                    echo esc_html( $this->get_meta_string( $post_id, 'sb_slider_link_text_bottom_center' ) );
                     break;
                 case 'sb_slider_link_url_bottom_center':
-                    echo esc_url(get_post_meta($post_id, 'sb_slider_link_url_bottom_center', true));
+                    echo esc_url( $this->get_meta_string( $post_id, 'sb_slider_link_url_bottom_center' ) );
                     break;
                 case 'sb_slider_link_text_bottom_right':
-                    echo esc_html(get_post_meta($post_id, 'sb_slider_link_text_bottom_right', true));
+                    echo esc_html( $this->get_meta_string( $post_id, 'sb_slider_link_text_bottom_right' ) );
                     break;
                 case 'sb_slider_link_url_bottom_right':
-                    echo esc_url(get_post_meta($post_id, 'sb_slider_link_url_bottom_right', true));
+                    echo esc_url( $this->get_meta_string( $post_id, 'sb_slider_link_url_bottom_right' ) );
                     break;
             }
         }
+
+    /**
+     * Return a meta value cast to string when possible.
+     *
+     * @param int $post_id
+     * @param string $key
+     * @return string
+     */
+    private function get_meta_string( int $post_id, string $key ): string
+    {
+        $val = get_post_meta( $post_id, $key, true );
+        if ( is_scalar( $val ) ) {
+            return (string) $val;
+        }
+        return '';
+    }
 
     /**
      * @param array<string,string> $columns

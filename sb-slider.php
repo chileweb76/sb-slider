@@ -135,7 +135,7 @@ if ( ! class_exists( 'SB_Slider' ) ) {
          * @return string
          */
         private function get_inline_styles() {
-            $options = get_option( 'sb_slider_options', [] );
+            $options = (array) get_option( 'sb_slider_options', [] );
             // default colors
             $defaults = [
                 'sb_slider_color_left'                    => '#D3D3D3',
@@ -153,9 +153,10 @@ if ( ! class_exists( 'SB_Slider' ) ) {
             ];
 
             foreach ( $defaults as $key => $def ) {
-                $value = isset( $options[ $key ] ) && $options[ $key ] !== '' ? $options[ $key ] : $def;
-                // sanitize the color or hex value - allow only safe characters
-                $value             = preg_replace( '/[^#A-Za-z0-9(),.\\-%\\s]/', '', $value );
+                $raw = isset( $options[ $key ] ) && $options[ $key ] !== '' ? $options[ $key ] : $def;
+                // Force scalar to string and sanitize the color or hex value - allow only safe characters
+                $raw = is_scalar( $raw ) ? (string) $raw : $def;
+                $value = preg_replace( '/[^#A-Za-z0-9(),.\\-%\\s]/', '', $raw );
                 $options[ $key ] = $value;
             }
 

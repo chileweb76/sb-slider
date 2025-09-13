@@ -28,3 +28,21 @@ This checklist prepares the plugin for WordPress.org review and submission.
 6. Submit
    - [ ] Verify `readme.txt` meets WordPress.org readme guidelines.
    - [ ] Submit the plugin ZIP to the WordPress.org plugin review form and respond to reviewer feedback promptly.
+
+7. Release-ready notes
+   - CI: GitHub Actions runs PHPStan (level 9) and PHPUnit on push/PR. Ensure the CI is green before tagging a release.
+   - ZIP: The release archive `sb-slider-dist.zip` is created in the repository root. It excludes dev files using `.distignore`.
+   - Smoke test: Install `sb-slider-dist.zip` on a clean WordPress (latest) install, activate, create a slide, and test shortcode output + admin settings.
+   - Sign-off: Optionally GPG-sign the ZIP or attach checksums in release notes. Keep release notes brief and mention PHPStan/PHPUnit passing.
+
+Commands used to create the ZIP (local):
+
+```bash
+rsync -a --exclude-from='.distignore' . /tmp/sb-slider-dist/
+cd /tmp && zip -r /path/to/repo/sb-slider-dist.zip sb-slider-dist
+```
+
+Checklist meta
+   - PHPStan: level 9 — PASS
+   - PHPUnit: basic helper tests — PASS
+

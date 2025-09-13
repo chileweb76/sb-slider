@@ -1,6 +1,15 @@
 
 <?php
-if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) {
+    // Allow tests to include this file: when PHPUnit is running we avoid exiting so tests can load class definitions.
+    if ( ! defined( 'PHPUNIT_COMPOSER_INSTALL' ) ) {
+        exit; // Exit if accessed directly in normal runtime
+    }
+    // When running under PHPUnit, define a benign ABSPATH so the rest of the file loads.
+    if ( ! defined( 'ABSPATH' ) ) {
+        define( 'ABSPATH', __DIR__ . '/' );
+    }
+}
 
     if (! class_exists('SB_Slider_Settings')) {
         class SB_Slider_Settings
@@ -12,10 +21,45 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
              */
             public static array $options = [];
 
+            /**
+             * Get option value as string safely.
+             *
+             * @param string $key
+             * @param string $default
+             * @return string
+             */
+            public static function get_option_string( string $key, string $default = '' ): string
+            {
+                if ( isset( self::$options[ $key ] ) && is_scalar( self::$options[ $key ] ) ) {
+                    return (string) self::$options[ $key ];
+                }
+                return $default;
+            }
+
+            /**
+             * Safely cast mixed values to string.
+             *
+             * @param mixed $val
+             * @return string
+             */
+            private static function safe_string( $val ): string
+            {
+                if ( is_scalar( $val ) ) {
+                    return (string) $val;
+                }
+                return '';
+            }
+
             public function __construct()
             {
                 // Ensure options is always an array for typed property safety.
-                self::$options = (array) get_option('sb_slider_options', []);
+                $raw_opts = (array) get_option( 'sb_slider_options', [] );
+                // Normalize keys to strings to satisfy static analysis expectations
+                $normalized = [];
+                foreach ( $raw_opts as $k => $v ) {
+                    $normalized[ (string) $k ] = $v;
+                }
+                self::$options = $normalized;
                 add_action('admin_init', [$this, 'admin_init']);
 
             }
@@ -251,14 +295,14 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
                 $output = [];
 
                 foreach ($input as $key => $value) {
-                    if (is_array($value)) {
+                    if ( is_array( $value ) ) {
                         // Recursively sanitize arrays
-                        $output[$key] = array_map('sanitize_text_field', $value);
+                        $output[ $key ] = array_map( 'sanitize_text_field', $value );
                         continue;
                     }
 
                     // For known color and title fields use text sanitization
-                    $output[$key] = sanitize_text_field((string) $value);
+                    $output[ $key ] = sanitize_text_field( self::safe_string( $value ) );
                 }
 
                 return $output;
@@ -314,7 +358,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
             type="text"
             name="sb_slider_options[sb_slider_title]"
             id="sb_slider_title"
-            value="<?php echo isset(self::$options['sb_slider_title']) ? esc_attr(self::$options['sb_slider_title']) : ''; ?>"
+            value="<?php echo esc_attr( self::get_option_string( 'sb_slider_title' ) ); ?>"
             >
         <?php
             }
@@ -327,7 +371,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
                     public function sb_slider_color_left_callback(): void
                     {
                     ?>
-<input type="text" name="sb_slider_options[sb_slider_color_left]" id="sb_slider_color_left" value="<?php echo isset(self::$options['sb_slider_color_left']) ? esc_attr(self::$options['sb_slider_color_left']) : ''; ?>">
+<input type="text" name="sb_slider_options[sb_slider_color_left]" id="sb_slider_color_left" value="<?php echo esc_attr( self::get_option_string( 'sb_slider_color_left' ) ); ?>">
 <?php
     }
 
@@ -340,20 +384,15 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
             public function sb_slider_left_font_color_callback(array $args = []): void
             {
             ?>
-<select
-id="sb_slider_left_font_color"
-name="sb_slider_options[sb_slider_left_font_color]">
+<select id="sb_slider_left_font_color" name="sb_slider_options[sb_slider_left_font_color]">
 <?php
-    foreach ($args['items'] as $item):
-            ?>
-<option value="<?php echo esc_attr($item); ?>"
-<?php
-    isset(self::$options['sb_slider_left_font_color']) ? selected($item, self::$options['sb_slider_left_font_color'], true) : '';
-            ?>
->
-<?php echo esc_html(ucfirst($item)); ?>
-</option>
-<?php endforeach; ?>
+    $items = isset($args['items']) ? (array) $args['items'] : [];
+    $current = self::get_option_string( 'sb_slider_left_font_color' );
+    foreach ($items as $item):
+        $item_s = self::safe_string( $item );
+        ?>
+        <option value="<?php echo esc_attr($item_s); ?>" <?php selected($item_s, $current, true); ?>><?php echo esc_html(ucfirst($item_s)); ?></option>
+    <?php endforeach; ?>
 </select>
 <?php
     }
@@ -366,7 +405,7 @@ name="sb_slider_options[sb_slider_left_font_color]">
             public function sb_slider_color_center_callback(): void
             {
             ?>
-<input type="text" name="sb_slider_options[sb_slider_color_center]" id="sb_slider_color_center" value="<?php echo isset(self::$options['sb_slider_color_center']) ? esc_attr(self::$options['sb_slider_color_center']) : ''; ?>">
+<input type="text" name="sb_slider_options[sb_slider_color_center]" id="sb_slider_color_center" value="<?php echo esc_attr( self::get_option_string( 'sb_slider_color_center' ) ); ?>">
 <?php
     }
 
@@ -379,20 +418,15 @@ name="sb_slider_options[sb_slider_left_font_color]">
             public function sb_slider_center_font_color_callback(array $args = []): void
             {
             ?>
-<select
-id="sb_slider_center_font_color"
-name="sb_slider_options[sb_slider_center_font_color]">
+<select id="sb_slider_center_font_color" name="sb_slider_options[sb_slider_center_font_color]">
 <?php
-    foreach ($args['items'] as $item):
-            ?>
-<option value="<?php echo esc_attr($item); ?>"
-<?php
-    isset(self::$options['sb_slider_center_font_color']) ? selected($item, self::$options['sb_slider_center_font_color'], true) : '';
-            ?>
->
-<?php echo esc_html(ucfirst($item)); ?>
-</option>
-<?php endforeach; ?>
+    $items = isset($args['items']) ? (array) $args['items'] : [];
+    $current = self::get_option_string( 'sb_slider_center_font_color' );
+    foreach ($items as $item):
+        $item_s = self::safe_string( $item );
+        ?>
+        <option value="<?php echo esc_attr($item_s); ?>" <?php selected($item_s, $current, true); ?>><?php echo esc_html(ucfirst($item_s)); ?></option>
+    <?php endforeach; ?>
 </select>
 <?php
     }
@@ -406,7 +440,7 @@ name="sb_slider_options[sb_slider_center_font_color]">
             {
 
             ?>
-<input type="text" name="sb_slider_options[sb_slider_color_right]" id="sb_slider_color_right" value="<?php echo isset(self::$options['sb_slider_color_right']) ? esc_attr(self::$options['sb_slider_color_right']) : ''; ?>">
+<input type="text" name="sb_slider_options[sb_slider_color_right]" id="sb_slider_color_right" value="<?php echo esc_attr( self::get_option_string( 'sb_slider_color_right' ) ); ?>">
 <?php
     }
 
@@ -419,20 +453,15 @@ name="sb_slider_options[sb_slider_center_font_color]">
             public function sb_slider_right_font_color_callback(array $args = []): void
             {
             ?>
-<select
-id="sb_slider_right_font_color"
-name="sb_slider_options[sb_slider_right_font_color]">
+<select id="sb_slider_right_font_color" name="sb_slider_options[sb_slider_right_font_color]">
 <?php
-    foreach ($args['items'] as $item):
-            ?>
-<option value="<?php echo esc_attr($item); ?>"
-<?php
-    isset(self::$options['sb_slider_right_font_color']) ? selected($item, self::$options['sb_slider_right_font_color'], true) : '';
-            ?>
->
-<?php echo esc_html(ucfirst($item)); ?>
-</option>
-<?php endforeach; ?>
+    $items = isset($args['items']) ? (array) $args['items'] : [];
+    $current = self::get_option_string( 'sb_slider_right_font_color' );
+    foreach ($items as $item):
+        $item_s = self::safe_string( $item );
+        ?>
+        <option value="<?php echo esc_attr($item_s); ?>" <?php selected($item_s, $current, true); ?>><?php echo esc_html(ucfirst($item_s)); ?></option>
+    <?php endforeach; ?>
 </select>
 <?php
     }
@@ -445,7 +474,7 @@ name="sb_slider_options[sb_slider_right_font_color]">
             public function sb_slider_color_bottom_left_callback(): void
             {
             ?>
-<input type="text" name="sb_slider_options[sb_slider_color_bottom_left]" id="sb_slider_color_bottom_left" value="<?php echo isset(self::$options['sb_slider_color_bottom_left']) ? esc_attr(self::$options['sb_slider_color_bottom_left']) : ''; ?>">
+<input type="text" name="sb_slider_options[sb_slider_color_bottom_left]" id="sb_slider_color_bottom_left" value="<?php echo esc_attr( self::get_option_string( 'sb_slider_color_bottom_left' ) ); ?>">
 <?php
     }
 
@@ -458,20 +487,15 @@ name="sb_slider_options[sb_slider_right_font_color]">
             public function sb_slider_bottom_left_font_color_callback(array $args = []): void
             {
             ?>
-<select
-id="sb_slider_bottom_left_font_color"
-name="sb_slider_options[sb_slider_bottom_left_font_color]">
+<select id="sb_slider_bottom_left_font_color" name="sb_slider_options[sb_slider_bottom_left_font_color]">
 <?php
-    foreach ($args['items'] as $item):
-            ?>
-<option value="<?php echo esc_attr($item); ?>"
-<?php
-    isset(self::$options['sb_slider_bottom_left_font_color']) ? selected($item, self::$options['sb_slider_bottom_left_font_color'], true) : '';
-            ?>
->
-<?php echo esc_html(ucfirst($item)); ?>
-</option>
-<?php endforeach; ?>
+    $items = isset($args['items']) ? (array) $args['items'] : [];
+    $current = self::get_option_string( 'sb_slider_bottom_left_font_color' );
+    foreach ($items as $item):
+        $item_s = self::safe_string( $item );
+        ?>
+        <option value="<?php echo esc_attr($item_s); ?>" <?php selected($item_s, $current, true); ?>><?php echo esc_html(ucfirst($item_s)); ?></option>
+    <?php endforeach; ?>
 </select>
 <?php
     }
@@ -484,7 +508,7 @@ name="sb_slider_options[sb_slider_bottom_left_font_color]">
             public function sb_slider_color_bottom_center_callback(): void
             {
             ?>
-<input type="text" name="sb_slider_options[sb_slider_color_bottom_center]" id="sb_slider_color_bottom_center" value="<?php echo isset(self::$options['sb_slider_color_bottom_center']) ? esc_attr(self::$options['sb_slider_color_bottom_center']) : ''; ?>">
+<input type="text" name="sb_slider_options[sb_slider_color_bottom_center]" id="sb_slider_color_bottom_center" value="<?php echo esc_attr( self::get_option_string( 'sb_slider_color_bottom_center' ) ); ?>">
 <?php
     }
 
@@ -497,20 +521,15 @@ name="sb_slider_options[sb_slider_bottom_left_font_color]">
             public function sb_slider_bottom_center_font_color_callback(array $args = []): void
             {
             ?>
-<select
-id="sb_slider_bottom_center_font_color"
-name="sb_slider_options[sb_slider_bottom_center_font_color]">
+<select id="sb_slider_bottom_center_font_color" name="sb_slider_options[sb_slider_bottom_center_font_color]">
 <?php
-    foreach ($args['items'] as $item):
-            ?>
-<option value="<?php echo esc_attr($item); ?>"
-<?php
-    isset(self::$options['sb_slider_bottom_center_font_color']) ? selected($item, self::$options['sb_slider_bottom_center_font_color'], true) : '';
-            ?>
->
-<?php echo esc_html(ucfirst($item)); ?>
-</option>
-<?php endforeach; ?>
+    $items = isset($args['items']) ? (array) $args['items'] : [];
+    $current = self::get_option_string( 'sb_slider_bottom_center_font_color' );
+    foreach ($items as $item):
+        $item_s = self::safe_string( $item );
+        ?>
+        <option value="<?php echo esc_attr($item_s); ?>" <?php selected($item_s, $current, true); ?>><?php echo esc_html(ucfirst($item_s)); ?></option>
+    <?php endforeach; ?>
 </select>
 <?php
     }
@@ -524,7 +543,7 @@ name="sb_slider_options[sb_slider_bottom_center_font_color]">
             {
 
             ?>
-<input type="text" name="sb_slider_options[sb_slider_color_bottom_right]" id="sb_slider_color_bottom_right" value="<?php echo isset(self::$options['sb_slider_color_bottom_right']) ? esc_attr(self::$options['sb_slider_color_bottom_right']) : ''; ?>">
+<input type="text" name="sb_slider_options[sb_slider_color_bottom_right]" id="sb_slider_color_bottom_right" value="<?php echo esc_attr( self::get_option_string( 'sb_slider_color_bottom_right' ) ); ?>">
 <?php
     }
 
@@ -537,20 +556,15 @@ name="sb_slider_options[sb_slider_bottom_center_font_color]">
             public function sb_slider_bottom_right_font_color_callback(array $args = []): void
             {
             ?>
-<select
-id="sb_slider_bottom_right_font_color"
-name="sb_slider_options[sb_slider_bottom_right_font_color]">
+<select id="sb_slider_bottom_right_font_color" name="sb_slider_options[sb_slider_bottom_right_font_color]">
 <?php
-    foreach ($args['items'] as $item):
-            ?>
-<option value="<?php echo esc_attr($item); ?>"
-<?php
-    isset(self::$options['sb_slider_bottom_right_font_color']) ? selected($item, self::$options['sb_slider_bottom_right_font_color'], true) : '';
-            ?>
->
-<?php echo esc_html(ucfirst($item)); ?>
-</option>
-<?php endforeach; ?>
+    $items = isset($args['items']) ? (array) $args['items'] : [];
+    $current = self::get_option_string( 'sb_slider_bottom_right_font_color' );
+    foreach ($items as $item):
+        $item_s = self::safe_string( $item );
+        ?>
+        <option value="<?php echo esc_attr($item_s); ?>" <?php selected($item_s, $current, true); ?>><?php echo esc_html(ucfirst($item_s)); ?></option>
+    <?php endforeach; ?>
 </select>
 <?php
     }
@@ -571,10 +585,10 @@ name="sb_slider_options[sb_slider_bottom_right_font_color]">
                                 add_settings_error('sb_slider_options', 'sb_slider_message', esc_html__('The title field can not be left empty', 'sb-slider'), 'error');
                                 $value = esc_html__('Please, type some text', 'sb-slider');
                             }
-                            $new_input[$key] = sanitize_text_field((string) $value);
+                            $new_input[$key] = sanitize_text_field( self::safe_string( $value ) );
                             break;
                         default:
-                            $new_input[$key] = sanitize_text_field((string) $value);
+                            $new_input[ $key ] = sanitize_text_field( self::safe_string( $value ) );
                             break;
                     }
                 }
@@ -583,4 +597,11 @@ name="sb_slider_options[sb_slider_bottom_right_font_color]">
 
         }
 
+}
+
+// PHPUnit test shim: when running tests outside WP, ensure class exists and no-op functions are present
+if ( defined( 'PHPUNIT_COMPOSER_INSTALL' ) || ( defined( 'WP_TESTS_DIR' ) && WP_TESTS_DIR === '' ) ) {
+    if ( ! function_exists( 'add_action' ) ) {
+        function add_action() { /* noop for tests */ }
+    }
 }
