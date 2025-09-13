@@ -28,14 +28,14 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
                 //Section Settings
                 add_settings_section(
                     'sb_slider_main_section',
-                    esc_html__('How does it work?', 'scrapbook-slider'),
+                    esc_html__('How does it work?', 'sb-slider'),
                     null,
                     'sb_slider_page1'
                 );
 
                 add_settings_section(
                     'sb_slider_second_section',
-                    esc_html__('Button Color Options', 'scrapbook-slider'),
+                    esc_html__('Button Color Options', 'sb-slider'),
                     null,
                     'sb_slider_page2'
                 );
@@ -44,7 +44,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
                 // Field one Main
                 add_settings_field(
                     'sb_slider_shortcode',
-                    esc_html__('Shortcode', 'scrapbook-slider'),
+                    esc_html__('Shortcode', 'sb-slider'),
                     [$this, 'sb_slider_shortcode_callback'],
                     'sb_slider_page1',
                     'sb_slider_main_section'
@@ -52,7 +52,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
                 add_settings_field(
                     'sb_slider_instructions',
-                    esc_html__('Instructions', 'scrapbook-slider'),
+                    esc_html__('Instructions', 'sb-slider'),
                     [$this, 'sb_slider_instructions_callback'],
                     'sb_slider_page1',
                     'sb_slider_main_section'
@@ -62,7 +62,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
                 add_settings_field(
                     'sb_slider_title',
-                    esc_html__('Slider Title', 'scrapbook-slider'),
+                    esc_html__('Slider Title', 'sb-slider'),
                     [$this, 'sb_slider_title_callback'],
                     'sb_slider_page2',
                     'sb_slider_second_section',

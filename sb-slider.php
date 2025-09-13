@@ -103,9 +103,15 @@ if ( ! class_exists( 'SB_Slider' ) ) {
                                 }
 
                                 public function define_constants() {
-                                    define( 'SB_SLIDER_PATH', plugin_dir_path( __FILE__ ) );
-                                    define( 'SB_SLIDER_URL', plugin_dir_url( __FILE__ ) );
-                                    define( 'SB_SLIDER_VERSION', '1.0.0' );
+                                    if ( ! defined( 'SB_SLIDER_PATH' ) ) {
+                                        define( 'SB_SLIDER_PATH', plugin_dir_path( __FILE__ ) );
+                                    }
+                                    if ( ! defined( 'SB_SLIDER_URL' ) ) {
+                                        define( 'SB_SLIDER_URL', plugin_dir_url( __FILE__ ) );
+                                    }
+                                    if ( ! defined( 'SB_SLIDER_VERSION' ) ) {
+                                        define( 'SB_SLIDER_VERSION', '1.0.0' );
+                                    }
                                 }
 
                                 public static function activate() {
