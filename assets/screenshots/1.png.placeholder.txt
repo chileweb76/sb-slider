@@ -1,0 +1,3 @@
+Placeholder for screenshot 1: Main carousel with thumbnail navigator and store buttons.
+
+WordPress.org accepts image files named 1.png, 2.png, etc., and higher resolution versions as 1-2x.png, 2-2x.png, etc. Place them in this directory before submission.

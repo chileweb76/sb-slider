@@ -17,3 +17,4 @@ composer.lock
 composer.phar
 # Exclude any other custom folders not needed for production
 # Add more as needed
+assets/
