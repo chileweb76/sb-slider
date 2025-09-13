@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-09-13T18:05:43+00:00\n"
+"POT-Creation-Date: 2025-09-13T18:18:23+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: sb-slider\n"
@@ -169,30 +169,6 @@ msgstr ""
 msgid "Bottom Right Link URL"
 msgstr ""
 
-#: post-types/class.sb-slider-cpt.php:109
-msgid "sb_slider_link_text_left"
-msgstr ""
-
-#: post-types/class.sb-slider-cpt.php:110
-msgid "sb_slider_link_text_center"
-msgstr ""
-
-#: post-types/class.sb-slider-cpt.php:111
-msgid "sb_slider_link_text_right"
-msgstr ""
-
-#: post-types/class.sb-slider-cpt.php:112
-msgid "sb_slider_link_text_bottom_left"
-msgstr ""
-
-#: post-types/class.sb-slider-cpt.php:113
-msgid "sb_slider_link_text_bottom_center"
-msgstr ""
-
-#: post-types/class.sb-slider-cpt.php:114
-msgid "sb_slider_link_text_bottom_right"
-msgstr ""
-
 #: post-types/class.sb-slider-cpt.php:122
 msgid "Link Options"
 msgstr ""
@@ -213,51 +189,51 @@ msgstr ""
 msgid "Settings Saved"
 msgstr ""
 
-#: views/sb-slider_metabox.php:25
+#: views/sb-slider_metabox.php:30
 msgid "Left Button Text"
 msgstr ""
 
-#: views/sb-slider_metabox.php:39
+#: views/sb-slider_metabox.php:44
 msgid "Left Button Url"
 msgstr ""
 
-#: views/sb-slider_metabox.php:53
+#: views/sb-slider_metabox.php:58
 msgid "Center Button Text"
 msgstr ""
 
-#: views/sb-slider_metabox.php:67
+#: views/sb-slider_metabox.php:72
 msgid "Center Button Url"
 msgstr ""
 
-#: views/sb-slider_metabox.php:81
+#: views/sb-slider_metabox.php:86
 msgid "Right Button Text"
 msgstr ""
 
-#: views/sb-slider_metabox.php:95
+#: views/sb-slider_metabox.php:100
 msgid "Right Button Url"
 msgstr ""
 
-#: views/sb-slider_metabox.php:109
+#: views/sb-slider_metabox.php:114
 msgid "Bottom Left Button Text"
 msgstr ""
 
-#: views/sb-slider_metabox.php:123
+#: views/sb-slider_metabox.php:128
 msgid "Bottom Left Button Url"
 msgstr ""
 
-#: views/sb-slider_metabox.php:137
+#: views/sb-slider_metabox.php:142
 msgid "Bottom Center Button Text"
 msgstr ""
 
-#: views/sb-slider_metabox.php:151
+#: views/sb-slider_metabox.php:156
 msgid "Bottom Center Button Url"
 msgstr ""
 
-#: views/sb-slider_metabox.php:165
+#: views/sb-slider_metabox.php:170
 msgid "Bottom Right Button Text"
 msgstr ""
 
-#: views/sb-slider_metabox.php:179
+#: views/sb-slider_metabox.php:184
 msgid "Bottom Right Button Url"
 msgstr ""
 
