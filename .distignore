@@ -1,0 +1,19 @@
+# Exclude development, test, and unneeded files from plugin distribution
+.git/
+.DS_Store
+node_modules/
+vendor/
+tests/
+*.log
+*.md
+*.sh
+*.xml
+*.yml
+*.dist
+*.phar
+phpunit.xml
+phpunit.xml.dist
+composer.lock
+composer.phar
+# Exclude any other custom folders not needed for production
+# Add more as needed

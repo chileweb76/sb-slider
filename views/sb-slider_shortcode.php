@@ -1,10 +1,12 @@
+
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
     global $id;
     global $orderby;
 
     $args = [
-        'post_type'   => 'sb-slider',
+        'post_type'   => 'scrapbook-slider',
         'post_status' => 'publish',
         'post__in'    => $id,
         'orderby'     => $orderby,
@@ -61,48 +63,70 @@
     <section class="sb_carousel">
         <div class="sb_thumbnail">
         <?php
-        foreach ($sb_thumbnail as $sb_thumbnails) {?>
-            <img class="sb_thumbnail_left remove" src="<?php echo esc_html($sb_thumbnails[0], 'sb-slider') ?>" />
-        <?php }?>
+        foreach ($sb_thumbnail as $sb_thumbnails) {
+            $src = isset($sb_thumbnails[0]) ? esc_url( $sb_thumbnails[0] ) : '';
+            echo '<img class="sb_thumbnail_left remove" src="' . $src . '" />';
+        }
+        ?>
         </div>
         <article class="sb_main">
             <div class="sb_image_scroll">
                 <button class="prev" onclick="prevSlide()">&#10094;</button>
                 <?php
-                foreach ($sb_main_image as $sb_main_images) {?>
-                <div>
-                    <img class="sb_main_image remove" src="<?php echo esc_html($sb_main_images[0], 'sb-slider'); ?>" />
-                </div>
-                <?php
-                }?>
-                <button class="next" onclick="nextSlide()">&#10095;</button>
+                foreach ($sb_main_image as $sb_main_images) {
+                    $src = isset($sb_main_images[0]) ? esc_url( $sb_main_images[0] ) : '';
+                    echo '<div><img class="sb_main_image remove" src="' . $src . '" /></div>';
+                }
+                ?>
             </div>
             <?php
-            foreach ($sb_title as $sb_titles) {?>
-                <div class="sb_title remove"><?php echo esc_html($sb_titles, 'sb-slider'); ?></div>
-            <?php }
-            foreach ($sb_content as $sb_contents) {?>
-                <div class="sb_content remove"><?php wp_kses($sb_contents, 'sb-slider'); ?></div>
-            <?php }?>
+            foreach ($sb_title as $sb_titles) {
+                echo '<div class="sb_title remove">' . esc_html( $sb_titles ) . '</div>';
+            }
+            foreach ($sb_content as $sb_contents) {
+                echo '<div class="sb_content remove">' . wp_kses_post( $sb_contents ) . '</div>';
+            }
+            ?>
             <div class="sb_store_buttons">
-            <?php for ($i = 0; $i < $sb_length; $i++) {?>
-                <a class="sb_button1 remove<?php echo ! empty($sb_button_left['text_left'][$i][0]) ? ' sb_button1_color' : '' ?>" href="<?php echo esc_url($sb_button_left['url_left'][$i][0]); ?>" target="_blank"><?php echo esc_html($sb_button_left['text_left'][$i][0], 'sb-slider');} ?></a>
-            <?php for ($i = 0; $i < $sb_length; $i++) {?>
-                <a class="sb_button2 remove<?php echo ! empty($sb_button_center['text_center'][$i][0]) ? ' sb_button2_color' : '' ?>" href="<?php echo esc_url($sb_button_center['url_center'][$i][0]); ?>" target="_blank"><?php echo esc_html($sb_button_center['text_center'][$i][0], 'sb-slider');} ?></a>
-            <?php for ($i = 0; $i < $sb_length; $i++) {?>
-                <a class="sb_button3 remove<?php echo ! empty($sb_button_right['text_right'][$i][0]) ? ' sb_button3_color' : '' ?>" href="<?php echo esc_url($sb_button_right['url_right'][$i][0]); ?>"target="_blank"><?php echo esc_html($sb_button_right['text_right'][$i][0], 'sb-slider');} ?></a>
-            <?php for ($i = 0; $i < $sb_length; $i++) {?>
-                <a class="sb_button4 remove<?php echo ! empty($sb_button_bottom_left['text_bottom_left'][$i][0]) ? ' sb_button4_color' : '' ?>" href="<?php echo esc_url($sb_button_bottom_left['url_bottom_left'][$i][0]); ?>"target="_blank"><?php echo esc_html($sb_button_bottom_left['text_bottom_left'][$i][0], 'sb-slider');} ?></a>
-            <?php for ($i = 0; $i < $sb_length; $i++) {?>
-                <a class="sb_button5 remove<?php echo ! empty($sb_button_bottom_center['text_bottom_center'][$i][0]) ? ' sb_button5_color' : '' ?>" href="<?php echo esc_url($sb_button_bottom_center['url_bottom_center'][$i][0]); ?>" target="_blank"><?php echo esc_html($sb_button_bottom_center['text_bottom_center'][$i][0], 'sb-slider');} ?></a>
-            <?php for ($i = 0; $i < $sb_length; $i++) {?>
-                <a class="sb_button6 remove<?php echo ! empty($sb_button_bottom_right['text_bottom_right'][$i][0]) ? ' sb_button6_color' : '' ?>" href="<?php echo esc_url($sb_button_bottom_right['url_bottom_right'][$i][0]); ?>" target="_blank"><?php echo esc_html($sb_button_bottom_right['text_bottom_right'][$i][0], 'sb-slider');} ?></a>
+            <?php
+            for ($i = 0; $i < $sb_length; $i++) {
+                // Left
+                $text_left = isset($sb_button_left['text_left'][$i][0]) ? esc_html($sb_button_left['text_left'][$i][0]) : '';
+                $url_left = isset($sb_button_left['url_left'][$i][0]) ? esc_url($sb_button_left['url_left'][$i][0]) : '#';
+                echo '<a class="sb_button1 remove' . (!empty($text_left) ? ' sb_button1_color' : '') . '" href="' . $url_left . '" target="_blank">' . $text_left . '</a>';
+
+                // Center
+                $text_center = isset($sb_button_center['text_center'][$i][0]) ? esc_html($sb_button_center['text_center'][$i][0]) : '';
+                $url_center = isset($sb_button_center['url_center'][$i][0]) ? esc_url($sb_button_center['url_center'][$i][0]) : '#';
+                echo '<a class="sb_button2 remove' . (!empty($text_center) ? ' sb_button2_color' : '') . '" href="' . $url_center . '" target="_blank">' . $text_center . '</a>';
+
+                // Right
+                $text_right = isset($sb_button_right['text_right'][$i][0]) ? esc_html($sb_button_right['text_right'][$i][0]) : '';
+                $url_right = isset($sb_button_right['url_right'][$i][0]) ? esc_url($sb_button_right['url_right'][$i][0]) : '#';
+                echo '<a class="sb_button3 remove' . (!empty($text_right) ? ' sb_button3_color' : '') . '" href="' . $url_right . '" target="_blank">' . $text_right . '</a>';
+
+                // Bottom left
+                $text_bl = isset($sb_button_bottom_left['text_bottom_left'][$i][0]) ? esc_html($sb_button_bottom_left['text_bottom_left'][$i][0]) : '';
+                $url_bl = isset($sb_button_bottom_left['url_bottom_left'][$i][0]) ? esc_url($sb_button_bottom_left['url_bottom_left'][$i][0]) : '#';
+                echo '<a class="sb_button4 remove' . (!empty($text_bl) ? ' sb_button4_color' : '') . '" href="' . $url_bl . '" target="_blank">' . $text_bl . '</a>';
+
+                // Bottom center
+                $text_bc = isset($sb_button_bottom_center['text_bottom_center'][$i][0]) ? esc_html($sb_button_bottom_center['text_bottom_center'][$i][0]) : '';
+                $url_bc = isset($sb_button_bottom_center['url_bottom_center'][$i][0]) ? esc_url($sb_button_bottom_center['url_bottom_center'][$i][0]) : '#';
+                echo '<a class="sb_button5 remove' . (!empty($text_bc) ? ' sb_button5_color' : '') . '" href="' . $url_bc . '" target="_blank">' . $text_bc . '</a>';
+
+                // Bottom right
+                $text_br = isset($sb_button_bottom_right['text_bottom_right'][$i][0]) ? esc_html($sb_button_bottom_right['text_bottom_right'][$i][0]) : '';
+                $url_br = isset($sb_button_bottom_right['url_bottom_right'][$i][0]) ? esc_url($sb_button_bottom_right['url_bottom_right'][$i][0]) : '#';
+                echo '<a class="sb_button6 remove' . (!empty($text_br) ? ' sb_button6_color' : '') . '" href="' . $url_br . '" target="_blank">' . $text_br . '</a>';
+            }
+            ?>
             </div>
         </article>
             <div class="sb_thumbnail">
             <?php
             foreach ($sb_thumbnail as $sb_thumbnails) {?>
-                <img class="sb_thumbnail_right remove" src="<?php echo esc_html($sb_thumbnails[0], 'sb-slider') ?>" />
+                <img class="sb_thumbnail_right remove" src="<?php echo esc_html__($sb_thumbnails[0], 'scrapbook-slider') ?>" />
 
             <?php }?>
             </div>

@@ -1,16 +1,18 @@
+
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 /**
  *Plugin Name: Scrapbook Slider
  *Plugin URI:
- *Description: A slider designes to show latest product with buttons to go to stores for purchase.
+ *Description: A slider designed to show the latest product with buttons to go to stores for purchase.
  *Version: 1.0
  *Requires at least: 6.7
  *Author: Christopher Hile
  *Author URI: https://christopherhile.com
  * License: GPL v2 or later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
- *Text Domain: sb-slider
+ *Text Domain: scrapbook-slider
  *Domain Path: /languages
  */
 
@@ -79,7 +81,7 @@ if (! class_exists('SB_Slider')) {
         public static function deactivate()
         {
             flush_rewrite_rules();
-            unregister_post_type('sb-slider');
+            unregister_post_type('scrapbook-slider');
         }
 
         public static function uninstall()
@@ -88,7 +90,7 @@ if (! class_exists('SB_Slider')) {
 
             $posts = get_posts(
                 [
-                    'post_type'    => 'sb-slider',
+                    'post_type'    => 'scrapbook-slider',
                     'number_posts' => -1,
                     'post_status'  => 'any',
                 ]
@@ -102,7 +104,7 @@ if (! class_exists('SB_Slider')) {
         public function load_textdomain()
         {
             load_plugin_textdomain(
-                'sb-slider',
+                'scrapbook-slider',
                 false,
                 dirname(plugin_basename(__FILE__)) . '/languages/'
             );
@@ -111,8 +113,8 @@ if (! class_exists('SB_Slider')) {
         public function add_menu()
         {
             add_menu_page(
-                esc_html__('Scrapbook Slider Options', 'sb-slider'),
-                esc_html__('Scrapbook Sliders', 'sb-slider'),
+                esc_html__('Scrapbook Slider Options', 'scrapbook-slider'),
+                esc_html__('Scrapbook Sliders', 'scrapbook-slider'),
                 'manage_options',
                 'sb_slider_admin',
                 [$this, 'sb_slider_settings_page'],
@@ -121,16 +123,16 @@ if (! class_exists('SB_Slider')) {
 
             add_submenu_page(
                 'sb_slider_admin',
-                esc_html__('Manage Slides', 'sb-slider'),
-                esc_html__('Manage Slides', 'sb-slider'),
+                esc_html__('Manage Slides', 'scrapbook-slider'),
+                esc_html__('Manage Slides', 'scrapbook-slider'),
                 'manage_options',
                 'edit.php?post_type=sb-slider',
             );
 
             add_submenu_page(
                 'sb_slider_admin',
-                esc_html__('Add New Slides', 'sb-slider'),
-                esc_html__('Add New Slides', 'sb-slider'),
+                esc_html__('Add New Slides', 'scrapbook-slider'),
+                esc_html__('Add New Slides', 'scrapbook-slider'),
                 'manage_options',
                 'post-new.php?post_type=sb-slider',
             );
@@ -143,7 +145,7 @@ if (! class_exists('SB_Slider')) {
             }
 
             if (isset($_GET['settings-updated'])) {
-                add_settings_error('sb_slider_options', 'sb_slider_message', esc_html__('Settings Saved', 'sb-slider'), 'success');
+                add_settings_error('sb_slider_options', 'sb_slider_message', esc_html__('Settings Saved', 'scrapbook-slider'), 'success');
             }
 
             settings_errors('sb_slider_options');
@@ -152,9 +154,58 @@ if (! class_exists('SB_Slider')) {
 
         public function register_scripts()
         {
-
             wp_register_script('sb-slider-main-jq', SB_SLIDER_URL . 'sb-slider_carousel/sb_slider.js', ['jquery'], SB_SLIDER_VERSION, true);
-            wp_register_style('sb-slider-carousel', SB_SLIDER_URL . 'sb-slider_carousel/sb_slider-carousel.php', [], SB_SLIDER_VERSION, 'all');
+            // Enqueue static CSS file
+            wp_register_style('sb-slider-carousel', SB_SLIDER_URL . 'sb-slider_carousel/sb_slider-carousel.css', [], SB_SLIDER_VERSION, 'all');
+            wp_enqueue_style('sb-slider-carousel');
+
+            // Add inline styles generated from options
+            $inline = $this->get_inline_styles();
+            if (!empty($inline)) {
+                wp_add_inline_style('sb-slider-carousel', $inline);
+            }
+        }
+
+        /**
+         * Build inline CSS from saved plugin options.
+         *
+         * @return string
+         */
+        private function get_inline_styles()
+        {
+            $options = get_option('sb_slider_options', []);
+            // default colors
+            $defaults = [
+                'sb_slider_color_left' => '#D3D3D3',
+                'sb_slider_color_center' => '#D3D3D3',
+                'sb_slider_color_right' => '#D3D3D3',
+                'sb_slider_color_bottom_left' => '#D3D3D3',
+                'sb_slider_color_bottom_center' => '#D3D3D3',
+                'sb_slider_color_bottom_right' => '#D3D3D3',
+                'sb_slider_left_font_color' => '#000000',
+                'sb_slider_center_font_color' => '#000000',
+                'sb_slider_right_font_color' => '#000000',
+                'sb_slider_bottom_left_font_color' => '#000000',
+                'sb_slider_bottom_center_font_color' => '#000000',
+                'sb_slider_bottom_right_font_color' => '#000000',
+            ];
+
+            $styles = '';
+            foreach ($defaults as $key => $def) {
+                $value = isset($options[$key]) && $options[$key] !== '' ? $options[$key] : $def;
+                // sanitize the color or hex value - allow only safe characters
+                $value = preg_replace('/[^#A-Za-z0-9(),.\-%\s]/', '', $value);
+                $options[$key] = $value;
+            }
+
+            $styles .= ".sb_button1_color{background-color:{$options['sb_slider_color_left']};color:{$options['sb_slider_left_font_color']};}\n";
+            $styles .= ".sb_button2_color{background-color:{$options['sb_slider_color_center']};color:{$options['sb_slider_center_font_color']};}\n";
+            $styles .= ".sb_button3_color{background-color:{$options['sb_slider_color_right']};color:{$options['sb_slider_right_font_color']};}\n";
+            $styles .= ".sb_button4_color{background-color:{$options['sb_slider_color_bottom_left']};color:{$options['sb_slider_bottom_left_font_color']};}\n";
+            $styles .= ".sb_button5_color{background-color:{$options['sb_slider_color_bottom_center']};color:{$options['sb_slider_bottom_center_font_color']};}\n";
+            $styles .= ".sb_button6_color{background-color:{$options['sb_slider_color_bottom_right']};color:{$options['sb_slider_bottom_right_font_color']};}\n";
+
+            return $styles;
         }
 
     }

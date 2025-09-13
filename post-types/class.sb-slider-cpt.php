@@ -1,4 +1,6 @@
+
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 if (! class_exists('SB_Slider_Post_Type')) {
     class SB_Slider_Post_Type
@@ -16,13 +18,13 @@ if (! class_exists('SB_Slider_Post_Type')) {
         public function create_post_type()
         {
             register_post_type(
-                'sb-slider',
+                'scrapbook-slider',
                 [
-                    'label'               => esc_html__('Slider', 'sb-slider'),
-                    'description'         => esc_html__('Sliders', 'sb-slider'),
+                    'label'               => esc_html__('Slider', 'scrapbook-slider'),
+                    'description'         => esc_html__('Sliders', 'scrapbook-slider'),
                     'labels'              => [
-                        'name'          => esc_html__('Sliders', 'sb-slider'),
-                        'singular_name' => esc_html__('Slider', 'sb-slider'),
+                        'name'          => esc_html__('Sliders', 'scrapbook-slider'),
+                        'singular_name' => esc_html__('Slider', 'scrapbook-slider'),
                     ],
                     'public'              => true,
                     'supports'            => ['title', 'editor', 'thumbnail'],
@@ -45,19 +47,19 @@ if (! class_exists('SB_Slider_Post_Type')) {
 
         public function sb_slider_cpt_columns($columns)
         {
-            $columns['sb_slider_link_text_left']   = esc_html__('Left Link Text', 'sb-slider');
-            $columns['sb_slider_link_url_left']    = esc_html__('Left Link URL', 'sb-slider');
-            $columns['sb_slider_link_text_center'] = esc_html__('Center Link Text', 'sb-slider');
-            $columns['sb_slider_link_url_center']  = esc_html__('Center Link URL', 'sb-slider');
-            $columns['sb_slider_link_text_right']  = esc_html__('Right Link Text', 'sb-slider');
-            $columns['sb_slider_link_url_right']   = esc_html__('Right Link URL', 'sb-slider');
+            $columns['sb_slider_link_text_left']   = esc_html__('Left Link Text', 'scrapbook-slider');
+            $columns['sb_slider_link_url_left']    = esc_html__('Left Link URL', 'scrapbook-slider');
+            $columns['sb_slider_link_text_center'] = esc_html__('Center Link Text', 'scrapbook-slider');
+            $columns['sb_slider_link_url_center']  = esc_html__('Center Link URL', 'scrapbook-slider');
+            $columns['sb_slider_link_text_right']  = esc_html__('Right Link Text', 'scrapbook-slider');
+            $columns['sb_slider_link_url_right']   = esc_html__('Right Link URL', 'scrapbook-slider');
 
-            $columns['sb_slider_link_text_bottom_left']   = esc_html__('Bottom Left Link Text', 'sb-slider');
-            $columns['sb_slider_link_url_bottom_left']    = esc_html__('Bottom Left Link URL', 'sb-slider');
-            $columns['sb_slider_link_text_bottom_center'] = esc_html__('Bottom Center Link Text', 'sb-slider');
-            $columns['sb_slider_link_url_bottom_center']  = esc_html__('Bottom Center Link URL', 'sb-slider');
-            $columns['sb_slider_link_text_bottom_right']  = esc_html__('Bottom Right Link Text', 'sb-slider');
-            $columns['sb_slider_link_url_bottom_right']   = esc_html__('Bottom Right Link URL', 'sb-slider');
+            $columns['sb_slider_link_text_bottom_left']   = esc_html__('Bottom Left Link Text', 'scrapbook-slider');
+            $columns['sb_slider_link_url_bottom_left']    = esc_html__('Bottom Left Link URL', 'scrapbook-slider');
+            $columns['sb_slider_link_text_bottom_center'] = esc_html__('Bottom Center Link Text', 'scrapbook-slider');
+            $columns['sb_slider_link_url_bottom_center']  = esc_html__('Bottom Center Link URL', 'scrapbook-slider');
+            $columns['sb_slider_link_text_bottom_right']  = esc_html__('Bottom Right Link Text', 'scrapbook-slider');
+            $columns['sb_slider_link_url_bottom_right']   = esc_html__('Bottom Right Link URL', 'scrapbook-slider');
             return $columns;
 
         }
@@ -106,12 +108,12 @@ if (! class_exists('SB_Slider_Post_Type')) {
 
         public function sb_slider_sortable_columns($colums)
         {
-            $columns['sb_slider_link_text_left']          = esc_html__('sb_slider_link_text_left', 'sb-slider');
-            $columns['sb_slider_link_text_center']        = esc_html__('sb_slider_link_text_center', 'sb-slider');
-            $columns['sb_slider_link_text_right']         = esc_html__('sb_slider_link_text_right', 'sb-slider');
-            $columns['sb_slider_link_text_bottom_left']   = esc_html__('sb_slider_link_text_bottom_left', 'sb-slider');
-            $columns['sb_slider_link_text_bottom_center'] = esc_html__('sb_slider_link_text_bottom_center', 'sb-slider');
-            $columns['sb_slider_link_text_bottom_right']  = esc_html__('sb_slider_link_text_bottom_right', 'sb-slider');
+            $columns['sb_slider_link_text_left']          = esc_html__('sb_slider_link_text_left', 'scrapbook-slider');
+            $columns['sb_slider_link_text_center']        = esc_html__('sb_slider_link_text_center', 'scrapbook-slider');
+            $columns['sb_slider_link_text_right']         = esc_html__('sb_slider_link_text_right', 'scrapbook-slider');
+            $columns['sb_slider_link_text_bottom_left']   = esc_html__('sb_slider_link_text_bottom_left', 'scrapbook-slider');
+            $columns['sb_slider_link_text_bottom_center'] = esc_html__('sb_slider_link_text_bottom_center', 'scrapbook-slider');
+            $columns['sb_slider_link_text_bottom_right']  = esc_html__('sb_slider_link_text_bottom_right', 'scrapbook-slider');
             return $columns;
         }
 
@@ -119,9 +121,9 @@ if (! class_exists('SB_Slider_Post_Type')) {
         {
             add_meta_box(
                 'sb_slider_meta_box',
-                esc_html__('Link Options', 'sb-slider'),
+                esc_html__('Link Options', 'scrapbook-slider'),
                 [$this, 'add_inner_meta_boxes'],
-                'sb-slider',
+                'scrapbook-slider',
                 'normal',
                 'high'
             );
@@ -134,50 +136,36 @@ if (! class_exists('SB_Slider_Post_Type')) {
 
         public function save_post($post_id)
         {
-            if (isset($_POST['sb_slider_nonce'])) {
-                if (! wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['sb_slider_nonce'], 'sb_slider_nonce')))) {
-                    return;
-                }
-            }
 
+            // Check if this is an autosave
             if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
                 return;
             }
 
-            if (isset($_POST['post_type']) && $_POST['post_type'] === 'mv-slider') {
-                if (! current_user_can('edit_page', $post_id)) {
-                    return;
-                } elseif (! current_user_can('edit_post', $post_id)) {
-                    return;
-                }
+            // Check nonce
+            if (!isset($_POST['sb_slider_nonce']) || !wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['sb_slider_nonce'])), 'sb_slider_nonce')) {
+                return;
             }
 
-            if (isset($_POST['action']) && $_POST['action'] = 'editpost') {
+            // Check user permissions
+            if (!current_user_can('edit_post', $post_id)) {
+                return;
+            }
+
+            if (isset($_POST['action']) && $_POST['action'] === 'editpost') {
                 $old_link_text_left          = get_post_meta($post_id, 'sb_slider_link_text_left', true);
                 $old_link_text_center        = get_post_meta($post_id, 'sb_slider_link_text_center', true);
                 $old_link_text_right         = get_post_meta($post_id, 'sb_slider_link_text_right', true);
                 $old_link_text_bottom_left   = get_post_meta($post_id, 'sb_slider_link_text_bottom_left', true);
                 $old_link_text_bottom_center = get_post_meta($post_id, 'sb_slider_link_text_bottom_center', true);
                 $old_link_text_bottom_right  = get_post_meta($post_id, 'sb_slider_link_text_bottom_right', true);
-
-                if (empty($_POST['sb_slider_link_text_left'])) {
-                    $new_link_text_left = sanitize_text_field(wp_unslash($_POST['sb_slider_link_text_left']));
-                }
-                if (empty($_POST['sb_slider_link_text_center'])) {
-                    $new_link_text_center = sanitize_text_field(wp_unslash($_POST['sb_slider_link_text_center']));
-                }
-                if (empty($_POST['sb_slider_link_text_right'])) {
-                    $new_link_text_right = sanitize_text_field(wp_unslash($_POST['sb_slider_link_text_right']));
-                }
-                if (empty($_POST['sb_slider_link_text_bottom_left'])) {
-                    $new_link_text_bottom_left = sanitize_text_field(wp_unslash($_POST['sb_slider_link_text_bottom_left']));
-                }
-                if (empty($_POST['sb_slider_link_text_bottom_center'])) {
-                    $new_link_text_bottom_center = sanitize_text_field(wp_unslash($_POST['sb_slider_link_text_bottom_center']));
-                }
-                if (empty($_POST['sb_slider_link_text_bottom_right'])) {
-                    $new_link_text_bottom_right = sanitize_text_field(wp_unslash($_POST['sb_slider_link_text_bottom_right']));
-                }
+                // Sanitize text fields if provided
+                $new_link_text_left = isset($_POST['sb_slider_link_text_left']) ? sanitize_text_field(wp_unslash($_POST['sb_slider_link_text_left'])) : $old_link_text_left;
+                $new_link_text_center = isset($_POST['sb_slider_link_text_center']) ? sanitize_text_field(wp_unslash($_POST['sb_slider_link_text_center'])) : $old_link_text_center;
+                $new_link_text_right = isset($_POST['sb_slider_link_text_right']) ? sanitize_text_field(wp_unslash($_POST['sb_slider_link_text_right'])) : $old_link_text_right;
+                $new_link_text_bottom_left = isset($_POST['sb_slider_link_text_bottom_left']) ? sanitize_text_field(wp_unslash($_POST['sb_slider_link_text_bottom_left'])) : $old_link_text_bottom_left;
+                $new_link_text_bottom_center = isset($_POST['sb_slider_link_text_bottom_center']) ? sanitize_text_field(wp_unslash($_POST['sb_slider_link_text_bottom_center'])) : $old_link_text_bottom_center;
+                $new_link_text_bottom_right = isset($_POST['sb_slider_link_text_bottom_right']) ? sanitize_text_field(wp_unslash($_POST['sb_slider_link_text_bottom_right'])) : $old_link_text_bottom_right;
 
                 $old_link_url_left          = get_post_meta($post_id, 'sb_slider_link_url_left', true);
                 $old_link_url_center        = get_post_meta($post_id, 'sb_slider_link_url_center', true);
@@ -186,24 +174,19 @@ if (! class_exists('SB_Slider_Post_Type')) {
                 $old_link_url_bottom_center = get_post_meta($post_id, 'sb_slider_link_url_bottom_center', true);
                 $old_link_url_bottom_right  = get_post_meta($post_id, 'sb_slider_link_url_bottom_right', true);
 
-                if (empty($_POST['sb_slider_link_url_left'])) {
-                    $new_link_url_left = sanitize_text_field(wp_unslash($_POST['sb_slider_link_url_left']));
+                // Sanitize/validate URLs if provided - store raw sanitized URL
+                $new_link_url_left = isset($_POST['sb_slider_link_url_left']) ? esc_url_raw(wp_unslash($_POST['sb_slider_link_url_left'])) : $old_link_url_left;
+                $new_link_url_center = isset($_POST['sb_slider_link_url_center']) ? esc_url_raw(wp_unslash($_POST['sb_slider_link_url_center'])) : $old_link_url_center;
+                $new_link_url_right = isset($_POST['sb_slider_link_url_right']) ? esc_url_raw(wp_unslash($_POST['sb_slider_link_url_right'])) : $old_link_url_right;
+                $new_link_url_bottom_left = isset($_POST['sb_slider_link_url_bottom_left']) ? esc_url_raw(wp_unslash($_POST['sb_slider_link_url_bottom_left'])) : $old_link_url_bottom_left;
+                // handle possible misspelled field name from original code
+                $bottom_center_field = isset($_POST['sb_slider_link_url_bottom_center']) ? 'sb_slider_link_url_bottom_center' : (isset($_POST['sb_slider_link_url_buttom_center']) ? 'sb_slider_link_url_buttom_center' : null);
+                if ($bottom_center_field) {
+                    $new_link_url_bottom_center = esc_url_raw(wp_unslash($_POST[$bottom_center_field]));
+                } else {
+                    $new_link_url_bottom_center = $old_link_url_bottom_center;
                 }
-                if (empty($_POST['sb_slider_link_url_center'])) {
-                    $new_link_url_center = sanitize_text_field(wp_unslash($_POST['sb_slider_link_url_center']));
-                }
-                if (empty($_POST['sb_slider_link_url_right'])) {
-                    $new_link_url_right = sanitize_text_field(wp_unslash($_POST['sb_slider_link_url_right']));
-                }
-                if (empty($_POST['sb_slider_link_url_bottom_left'])) {
-                    $new_link_url_bottom_left = sanitize_text_field(wp_unslash($_POST['sb_slider_link_url_bottom_left']));
-                }
-                if (empty($_POST['sb_slider_link_url_buttom_center'])) {
-                    $new_link_url_bottom_center = sanitize_text_field(wp_unslash($_POST['sb_slider_link_url_buttom_center']));
-                }
-                if (empty($_POST['sb_slider_link_url_bottom_right'])) {
-                    $new_link_url_bottom_right = sanitize_text_field(wp_unslash($_POST['sb_slider_link_url_bottom_right']));
-                }
+                $new_link_url_bottom_right = isset($_POST['sb_slider_link_url_bottom_right']) ? esc_url_raw(wp_unslash($_POST['sb_slider_link_url_bottom_right'])) : $old_link_url_bottom_right;
 
                 update_post_meta($post_id, 'sb_slider_link_text_left', $new_link_text_left, $old_link_text_left);
                 update_post_meta($post_id, 'sb_slider_link_text_center', $new_link_text_center, $old_link_text_center);

@@ -1,4 +1,6 @@
+
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 if (! class_exists('SB_Slider_Shortcode')) {
     class SB_Slider_Shortcode
     {

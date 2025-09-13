@@ -1,7 +1,11 @@
+
 <?php
-    $absolute_path = explode('wp-content', $_SERVER['SCRIPT_FILENAME']);
-    $wp_load       = $absolute_path[0] . 'wp-load.php';
-    require_once $wp_load;
+// Deprecated: this file previously served dynamic CSS. The plugin now enqueues
+// a static CSS file and injects inline styles. Keeping this file only for
+// backwards reference — it should not be publicly reachable.
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+// DO NOT DELETE YET: see sb-slider_carousel/sb_slider-carousel.css and SB_Slider::get_inline_styles()
+return;
 
     $options = get_option('sb_slider_options');
     if (! empty($options['sb_slider_color_left'])) {
@@ -164,48 +168,48 @@ p {
 }
 
 .sb_button1_color {
-  background-color:<?php echo esc_html($sb_slider_color_left, 'sb-slider') ?>;
-  color:                                           <?php echo esc_html($sb_slider_left_font_color, 'sb-slider') ?>;
+  background-color:<?php echo esc_html($sb_slider_color_left, 'scrapbook-slider') ?>;
+  color:                                           <?php echo esc_html($sb_slider_left_font_color, 'scrapbook-slider') ?>;
     &:hover {
       box-shadow: 10px 10px 20px rgba(36, 36, 36, 0.5);
     }
 }
 
 .sb_button2_color {
-  background-color:<?php echo esc_html($sb_slider_color_center, 'sb-slider') ?>;
-  color:                                           <?php echo esc_html($sb_slider_center_font_color, 'sb-slider') ?>;
+  background-color:<?php echo esc_html($sb_slider_color_center, 'scrapbook-slider') ?>;
+  color:                                           <?php echo esc_html($sb_slider_center_font_color, 'scrapbook-slider') ?>;
     &:hover {
       box-shadow: 10px 10px 20px rgba(36, 36, 36, 0.5);
     }
 }
 
 .sb_button3_color {
-  background-color:<?php echo esc_html($sb_slider_color_right, 'sb-slider') ?>;
-  color:                                           <?php echo esc_html($sb_slider_right_font_color, 'sb-slider') ?>;
+  background-color:<?php echo esc_html($sb_slider_color_right, 'scrapbook-slider') ?>;
+  color:                                           <?php echo esc_html($sb_slider_right_font_color, 'scrapbook-slider') ?>;
     &:hover {
       box-shadow: 10px 10px 20px rgba(36, 36, 36, 0.5);
     }
 }
 
 .sb_button4_color {
-  background-color:<?php echo esc_html($sb_slider_color_bottom_left, 'sb-slider') ?>;
-  color:                                           <?php echo esc_html($sb_slider_bottom_left_font_color, 'sb-slider') ?>;
+  background-color:<?php echo esc_html($sb_slider_color_bottom_left, 'scrapbook-slider') ?>;
+  color:                                           <?php echo esc_html($sb_slider_bottom_left_font_color, 'scrapbook-slider') ?>;
     &:hover {
       box-shadow: 10px 10px 20px rgba(36, 36, 36, 0.5);
     }
 }
 
 .sb_button5_color {
-  background-color:<?php echo esc_html($sb_slider_color_bottom_center, 'sb-slider') ?>;
-  color:                                           <?php echo esc_html($sb_slider_bottom_center_font_color, 'sb-slider') ?>;
+  background-color:<?php echo esc_html($sb_slider_color_bottom_center, 'scrapbook-slider') ?>;
+  color:                                           <?php echo esc_html($sb_slider_bottom_center_font_color, 'scrapbook-slider') ?>;
     &:hover {
       box-shadow: 10px 10px 20px rgba(36, 36, 36, 0.5);
     }
 }
 
 .sb_button6_color {
-  background-color:<?php echo esc_html($sb_slider_color_bottom_right, 'sb-slider') ?>;
-  color:                                           <?php echo esc_html($sb_slider_bottom_right_font_color, 'sb-slider') ?>;
+  background-color:<?php echo esc_html($sb_slider_color_bottom_right, 'scrapbook-slider') ?>;
+  color:                                           <?php echo esc_html($sb_slider_bottom_right_font_color, 'scrapbook-slider') ?>;
     &:hover {
       box-shadow: 10px 10px 20px rgba(36, 36, 36, 0.5);
     }

@@ -1,4 +1,6 @@
+
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
     $meta = get_post_meta($post->ID);
 
     $link_text_left          = get_post_meta($post->ID, 'sb_slider_link_text_left', true);
@@ -17,10 +19,10 @@
 ?>
 
 <table class="form-table sb-slider-metabox">
-    <input type="hidden" name="sb_slider_nonce" value="<?php printf('%s', esc_html(wp_create_nonce("sb_slider_nonce"))); ?>">
+    <?php wp_nonce_field( 'sb_slider_nonce', 'sb_slider_nonce' ); ?>
     <tr>
         <th>
-            <label for="sb_slider_link_text_left"><?php esc_html_e('Left Button Text', 'sb-slider')?></label>
+            <label for="sb_slider_link_text_left"><?php esc_html_e('Left Button Text', 'scrapbook-slider')?></label>
         </th>
         <td>
             <input
@@ -28,13 +30,13 @@
                 name="sb_slider_link_text_left"
                 id="sb_slider_link_text_left"
                 class="regular-text link-text"
-                value="<?php echo esc_html($link_text_left); ?>"
+                value="<?php echo esc_attr( $link_text_left ); ?>"
             >
         </td>
     </tr>
     <tr>
         <th>
-            <label for="sb_slider_link_url_left"><?php esc_html_e('Left Button Url', 'sb-slider')?></label>
+            <label for="sb_slider_link_url_left"><?php esc_html_e('Left Button Url', 'scrapbook-slider')?></label>
         </th>
         <td>
             <input
@@ -42,13 +44,13 @@
                 name="sb_slider_link_url_left"
                 id="sb_slider_link_url_left"
                 class="regular-text link-url"
-                value="<?php echo esc_url($link_url_left); ?>"
+                value="<?php echo esc_attr( $link_url_left ); ?>"
             >
         </td>
     </tr>
     <tr>
         <th>
-            <label for="sb_slider_link_text_center"><?php esc_html_e('Center Button Text', 'sb-slider')?></label>
+            <label for="sb_slider_link_text_center"><?php esc_html_e('Center Button Text', 'scrapbook-slider')?></label>
         </th>
         <td>
             <input
@@ -56,13 +58,13 @@
                 name="sb_slider_link_text_center"
                 id="sb_slider_link_text_center"
                 class="regular-text link-text"
-                value="<?php echo esc_html($link_text_center); ?>"
+                value="<?php echo esc_attr( $link_text_center ); ?>"
             >
         </td>
     </tr>
     <tr>
         <th>
-            <label for="sb_slider_link_url_center"><?php esc_html_e('Center Button Url', 'sb-slider')?></label>
+            <label for="sb_slider_link_url_center"><?php esc_html_e('Center Button Url', 'scrapbook-slider')?></label>
         </th>
         <td>
             <input
@@ -70,13 +72,13 @@
                 name="sb_slider_link_url_center"
                 id="sb_slider_link_url_center"
                 class="regular-text link-url"
-                value="<?php echo esc_url($link_url_center); ?>"
+                value="<?php echo esc_attr( $link_url_center ); ?>"
             >
         </td>
     </tr>
     <tr>
         <th>
-            <label for="sb_slider_link_text_right"><?php esc_html_e('Right Button Text', 'sb-slider')?></label>
+            <label for="sb_slider_link_text_right"><?php esc_html_e('Right Button Text', 'scrapbook-slider')?></label>
         </th>
         <td>
             <input
@@ -84,13 +86,13 @@
                 name="sb_slider_link_text_right"
                 id="sb_slider_link_text_right"
                 class="regular-text link-text"
-                value="<?php echo esc_html($link_text_right); ?>"
+                value="<?php echo esc_attr( $link_text_right ); ?>"
             >
         </td>
     </tr>
     <tr>
         <th>
-            <label for="sb_slider_link_url_right"><?php esc_html_e('Right Button Url', 'sb-slider')?></label>
+            <label for="sb_slider_link_url_right"><?php esc_html_e('Right Button Url', 'scrapbook-slider')?></label>
         </th>
         <td>
             <input
@@ -98,13 +100,13 @@
                 name="sb_slider_link_url_right"
                 id="sb_slider_link_url_right"
                 class="regular-text link-url"
-                value="<?php echo esc_url($link_url_right); ?>"
+                value="<?php echo esc_attr( $link_url_right ); ?>"
             >
         </td>
     </tr>
     <tr>
         <th>
-            <label for="sb_slider_link_text_bottom_left"><?php esc_html_e('Bottom Left Button Text', 'sb-slider')?></label>
+            <label for="sb_slider_link_text_bottom_left"><?php esc_html_e('Bottom Left Button Text', 'scrapbook-slider')?></label>
         </th>
         <td>
             <input
@@ -112,13 +114,13 @@
                 name="sb_slider_link_text_bottom_left"
                 id="sb_slider_link_text_bottom_left"
                 class="regular-text link-text"
-                value="<?php echo esc_html($link_text_bottom_left); ?>"
+                value="<?php echo esc_attr( $link_text_bottom_left ); ?>"
             >
         </td>
     </tr>
     <tr>
         <th>
-            <label for="sb_slider_link_url_bottom_left"><?php esc_html_e('Bottom Left Button Url', 'sb-slider')?></label>
+            <label for="sb_slider_link_url_bottom_left"><?php esc_html_e('Bottom Left Button Url', 'scrapbook-slider')?></label>
         </th>
         <td>
             <input
@@ -126,13 +128,13 @@
                 name="sb_slider_link_url_bottom_left"
                 id="sb_slider_link_url_bottom_left"
                 class="regular-text link-url"
-                value="<?php echo esc_url($link_url_bottom_left); ?>"
+                value="<?php echo esc_attr( $link_url_bottom_left ); ?>"
             >
         </td>
     </tr>
     <tr>
         <th>
-            <label for="sb_slider_link_text_bottom_center"><?php esc_html_e('Bottom Center Button Text', 'sb-slider')?></label>
+            <label for="sb_slider_link_text_bottom_center"><?php esc_html_e('Bottom Center Button Text', 'scrapbook-slider')?></label>
         </th>
         <td>
             <input
@@ -140,13 +142,13 @@
                 name="sb_slider_link_text_bottom_center"
                 id="sb_slider_link_text_bottom_center"
                 class="regular-text link-text"
-                value="<?php echo esc_html($link_text_bottom_center); ?>"
+                value="<?php echo esc_attr( $link_text_bottom_center ); ?>"
             >
         </td>
     </tr>
     <tr>
         <th>
-            <label for="sb_slider_link_url_bottom_center"><?php esc_html_e('Bottom Center Button Url', 'sb-slider')?></label>
+            <label for="sb_slider_link_url_bottom_center"><?php esc_html_e('Bottom Center Button Url', 'scrapbook-slider')?></label>
         </th>
         <td>
             <input
@@ -154,13 +156,13 @@
                 name="sb_slider_link_url_bottom_center"
                 id="sb_slider_link_url_bottom_center"
                 class="regular-text link-url"
-                value="<?php echo esc_url($link_url_bottom_center); ?>"
+                value="<?php echo esc_attr( $link_url_bottom_center ); ?>"
             >
         </td>
     </tr>
     <tr>
         <th>
-            <label for="sb_slider_link_text_bottom_right"><?php esc_html_e('Bottom Right Button Text', 'sb-slider')?></label>
+            <label for="sb_slider_link_text_bottom_right"><?php esc_html_e('Bottom Right Button Text', 'scrapbook-slider')?></label>
         </th>
         <td>
             <input
@@ -168,13 +170,13 @@
                 name="sb_slider_link_text_bottom_right"
                 id="sb_slider_link_text_bottom_right"
                 class="regular-text link-text"
-                value="<?php echo esc_html($link_text_bottom_right); ?>"
+                value="<?php echo esc_attr( $link_text_bottom_right ); ?>"
             >
         </td>
     </tr>
     <tr>
         <th>
-            <label for="sb_slider_link_url_bottom_right"><?php esc_html_e('Bottom Right Button Url', 'sb-slider')?></label>
+            <label for="sb_slider_link_url_bottom_right"><?php esc_html_e('Bottom Right Button Url', 'scrapbook-slider')?></label>
         </th>
         <td>
             <input
@@ -182,7 +184,7 @@
                 name="sb_slider_link_url_bottom_right"
                 id="sb_slider_link_url_bottom_right"
                 class="regular-text link-url"
-                value="<?php echo esc_url($link_url_bottom_right); ?>"
+                value="<?php echo esc_attr( $link_url_bottom_right ); ?>"
             >
         </td>
     </tr>

@@ -1,3 +1,126 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: sb-slider 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-09-13 00:00+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: English <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: sb-slider i18n script\n"
+
+# Admin menu and pages
+msgid "Scrapbook Slider Options"
+msgstr ""
+
+msgid "Scrapbook Sliders"
+msgstr ""
+
+msgid "Manage Slides"
+msgstr ""
+
+msgid "Add New Slides"
+msgstr ""
+
+msgid "Settings Saved"
+msgstr ""
+
+# Settings sections and fields
+msgid "How does it work?"
+msgstr ""
+
+msgid "Button Color Options"
+msgstr ""
+
+msgid "Shortcode"
+msgstr ""
+
+msgid "Instructions"
+msgstr ""
+
+msgid "Slider Title"
+msgstr ""
+
+msgid "Color Changes"
+msgstr ""
+
+msgid "Left Button Color"
+msgstr ""
+
+msgid "Font Color"
+msgstr ""
+
+msgid "Center Button Color"
+msgstr ""
+
+msgid "Right Button Color"
+msgstr ""
+
+msgid "Bottom Left Button Color"
+msgstr ""
+
+msgid "Bottom Center Button Color"
+msgstr ""
+
+msgid "Bottom Right Button Color"
+msgstr ""
+
+msgid "Use the shortcode [sb_slider] to display in any page/post/widget."
+msgstr ""
+
+msgid "Please download a regenerate thumbnail plugin."
+msgstr ""
+
+msgid "This is needed to setup main image correctly."
+msgstr ""
+
+msgid "Use hex code to input color."
+msgstr ""
+
+# Post type labels and columns
+msgid "Slider"
+msgstr ""
+
+msgid "Sliders"
+msgstr ""
+
+msgid "Left Link Text"
+msgstr ""
+
+msgid "Left Link URL"
+msgstr ""
+
+msgid "Center Link Text"
+msgstr ""
+
+msgid "Center Link URL"
+msgstr ""
+
+msgid "Right Link Text"
+msgstr ""
+
+msgid "Right Link URL"
+msgstr ""
+
+msgid "Bottom Left Link Text"
+msgstr ""
+
+msgid "Bottom Left Link URL"
+msgstr ""
+
+msgid "Bottom Center Link Text"
+msgstr ""
+
+msgid "Bottom Center Link URL"
+msgstr ""
+
+msgid "Bottom Right Link Text"
+msgstr ""
+
+msgid "Bottom Right Link URL"
+msgstr ""
 # Blank WordPress Pot
 # Copyright 2014 ...
 # This file is distributed under the GNU General Public License v3 or later.

@@ -1,4 +1,6 @@
+
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
     if (! class_exists('SB_Slider_Settings')) {
         class SB_Slider_Settings
@@ -14,19 +16,26 @@
 
             public function admin_init()
             {
-                register_setting('sb_slider_group', 'sb_slider_options', sanitize_text_field([$this, 'sb_slider_validate']));
+                register_setting(
+                    'sb_slider_group', 
+                    'sb_slider_options', 
+                    [
+                        // Use a dedicated sanitize callback to clean the options array
+                        'sanitize_callback' => [$this, 'sanitize_options']
+                    ]
+                );
 
                 //Section Settings
                 add_settings_section(
                     'sb_slider_main_section',
-                    esc_html__('How does it work?', 'sb-slider'),
+                    esc_html__('How does it work?', 'scrapbook-slider'),
                     null,
                     'sb_slider_page1'
                 );
 
                 add_settings_section(
                     'sb_slider_second_section',
-                    esc_html__('Button Color Options', 'sb-slider'),
+                    esc_html__('Button Color Options', 'scrapbook-slider'),
                     null,
                     'sb_slider_page2'
                 );
@@ -35,7 +44,7 @@
                 // Field one Main
                 add_settings_field(
                     'sb_slider_shortcode',
-                    esc_html__('Shortcode', 'sb-slider'),
+                    esc_html__('Shortcode', 'scrapbook-slider'),
                     [$this, 'sb_slider_shortcode_callback'],
                     'sb_slider_page1',
                     'sb_slider_main_section'
@@ -43,7 +52,7 @@
 
                 add_settings_field(
                     'sb_slider_instructions',
-                    esc_html__('Instructions', 'sb-slider'),
+                    esc_html__('Instructions', 'scrapbook-slider'),
                     [$this, 'sb_slider_instructions_callback'],
                     'sb_slider_page1',
                     'sb_slider_main_section'
@@ -53,7 +62,7 @@
 
                 add_settings_field(
                     'sb_slider_title',
-                    esc_html__('Slider Title', 'sb-slider'),
+                    esc_html__('Slider Title', 'scrapbook-slider'),
                     [$this, 'sb_slider_title_callback'],
                     'sb_slider_page2',
                     'sb_slider_second_section',
@@ -64,7 +73,7 @@
 
                 add_settings_field(
                     'sb_slider_color',
-                    esc_html__('Color Changes', 'sb-slider'),
+                    esc_html__('Color Changes', 'scrapbook-slider'),
                     [$this, 'sb_slider_color_callback'],
                     'sb_slider_page2',
                     'sb_slider_second_section'
@@ -72,7 +81,7 @@
 
                 add_settings_field(
                     'sb_slider_color_left',
-                    esc_html__('Left Button Color', 'sb-slider'),
+                    esc_html__('Left Button Color', 'scrapbook-slider'),
                     [$this, 'sb_slider_color_left_callback'],
                     'sb_slider_page2',
                     'sb_slider_second_section',
@@ -81,7 +90,7 @@
 
                 add_settings_field(
                     'sb_slider_left_font_color',
-                    esc_html__('Font Color', 'sb-slider'),
+                    esc_html__('Font Color', 'scrapbook-slider'),
                     [$this, 'sb_slider_left_font_color_callback'],
                     'sb_slider_page2',
                     'sb_slider_second_section',
@@ -97,7 +106,7 @@
 
                 add_settings_field(
                     'sb_slider_color_center',
-                    esc_html__('Center Button Color', 'sb-slider'),
+                    esc_html__('Center Button Color', 'scrapbook-slider'),
                     [$this, 'sb_slider_color_center_callback'],
                     'sb_slider_page2',
                     'sb_slider_second_section',
@@ -106,7 +115,7 @@
 
                 add_settings_field(
                     'sb_slider_center_font_color',
-                    esc_html__('Font Color', 'sb-slider'),
+                    esc_html__('Font Color', 'scrapbook-slider'),
                     [$this, 'sb_slider_center_font_color_callback'],
                     'sb_slider_page2',
                     'sb_slider_second_section',
@@ -122,7 +131,7 @@
 
                 add_settings_field(
                     'sb_slider_color_right',
-                    esc_html__('Right Button Color', 'sb-slider'),
+                    esc_html__('Right Button Color', 'scrapbook-slider'),
                     [$this, 'sb_slider_color_right_callback'],
                     'sb_slider_page2',
                     'sb_slider_second_section',
@@ -131,7 +140,7 @@
 
                 add_settings_field(
                     'sb_slider_right_font_color',
-                    esc_html__('Font Color', 'sb-slider'),
+                    esc_html__('Font Color', 'scrapbook-slider'),
                     [$this, 'sb_slider_right_font_color_callback'],
                     'sb_slider_page2',
                     'sb_slider_second_section',
@@ -146,7 +155,7 @@
 
                 add_settings_field(
                     'sb_slider_color_bottom_left',
-                    esc_html__('Bottom Left Button Color', 'sb-slider'),
+                    esc_html__('Bottom Left Button Color', 'scrapbook-slider'),
                     [$this, 'sb_slider_color_bottom_left_callback'],
                     'sb_slider_page2',
                     'sb_slider_second_section',
@@ -155,7 +164,7 @@
 
                 add_settings_field(
                     'sb_slider_bottom_left_font_color',
-                    esc_html__('Font Color', 'sb-slider'),
+                    esc_html__('Font Color', 'scrapbook-slider'),
                     [$this, 'sb_slider_bottom_left_font_color_callback'],
                     'sb_slider_page2',
                     'sb_slider_second_section',
@@ -171,7 +180,7 @@
 
                 add_settings_field(
                     'sb_slider_color_bottom_center',
-                    esc_html__('Bottom Center Button Color', 'sb-slider'),
+                    esc_html__('Bottom Center Button Color', 'scrapbook-slider'),
                     [$this, 'sb_slider_color_bottom_center_callback'],
                     'sb_slider_page2',
                     'sb_slider_second_section',
@@ -180,7 +189,7 @@
 
                 add_settings_field(
                     'sb_slider_bottom_center_font_color',
-                    esc_html__('Font Color', 'sb-slider'),
+                    esc_html__('Font Color', 'scrapbook-slider'),
                     [$this, 'sb_slider_bottom_center_font_color_callback'],
                     'sb_slider_page2',
                     'sb_slider_second_section',
@@ -196,7 +205,7 @@
 
                 add_settings_field(
                     'sb_slider_color_bottom_right',
-                    esc_html__('Bottom Right Button Color', 'sb-slider'),
+                    esc_html__('Bottom Right Button Color', 'scrapbook-slider'),
                     [$this, 'sb_slider_color_bottom_right_callback'],
                     'sb_slider_page2',
                     'sb_slider_second_section',
@@ -205,7 +214,7 @@
 
                 add_settings_field(
                     'sb_slider_bottom_right_font_color',
-                    esc_html__('Font Color', 'sb-slider'),
+                    esc_html__('Font Color', 'scrapbook-slider'),
                     [$this, 'sb_slider_bottom_right_font_color_callback'],
                     'sb_slider_page2',
                     'sb_slider_second_section',
@@ -220,25 +229,52 @@
                 );
             }
 
+            /**
+             * Sanitize the options array before saving.
+             *
+             * @param array $input
+             * @return array
+             */
+            public function sanitize_options($input)
+            {
+                $output = [];
+                if (!is_array($input)) {
+                    return $output;
+                }
+
+                foreach ($input as $key => $value) {
+                    if (is_array($value)) {
+                        // Recursively sanitize arrays
+                        $output[$key] = array_map('sanitize_text_field', $value);
+                        continue;
+                    }
+
+                    // For known color and title fields use text sanitization
+                    $output[$key] = sanitize_text_field($value);
+                }
+
+                return $output;
+            }
+
             public function sb_slider_shortcode_callback()
             {
             ?>
-<span><?php esc_html_e('Use the shortcode [sb_slider] to display in any page/post/widget.', 'sb-slider')?></span>
+<span><?php esc_html_e('Use the shortcode [sb_slider] to display in any page/post/widget.', 'scrapbook-slider')?></span>
 <?php
     }
 
             public function sb_slider_instructions_callback()
             {
             ?>
-<span><?php esc_html_e('Please download a regenerate thumbnail plugin.', 'sb-slider')?></span> </br>
-<span><?php esc_html_e('This is needed to setup main image correctly.', 'sb-slider')?>.</span>
+<span><?php esc_html_e('Please download a regenerate thumbnail plugin.', 'scrapbook-slider')?></span> </br>
+<span><?php esc_html_e('This is needed to setup main image correctly.', 'scrapbook-slider')?>.</span>
 <?php
     }
 
             public function sb_slider_color_callback()
             {
             ?>
-<span><?php esc_html_e('Use hex code to input color.', 'sb-slider')?></span>
+<span><?php esc_html_e('Use hex code to input color.', 'scrapbook-slider')?></span>
 <?php
     }
 
@@ -431,8 +467,8 @@ name="sb_slider_options[sb_slider_bottom_right_font_color]">
                     switch ($key) {
                         case 'sb_slider_title':
                             if (empty($value)) {
-                                add_settings_error('sb_slider_options', 'sb_slider_message', esc_html__('The title field can not be left empty', 'sb-slider'), 'error');
-                                $value = esc_html__('Please, type some text', 'sb-slider');
+                                add_settings_error('sb_slider_options', 'sb_slider_message', esc_html__('The title field can not be left empty', 'scrapbook-slider'), 'error');
+                                $value = esc_html__('Please, type some text', 'scrapbook-slider');
                             }
                             $new_input[$key] = sanitize_text_field($value);
                             break;
