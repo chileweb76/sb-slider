@@ -3,28 +3,32 @@ Requires at least: 6.8
 Tested up to: 6.8
 Requires PHP: 8.3
 Stable tag: 1.0
-License: GPLv2
+License: GPLv2 or later
 Tags: carousel, slider
 
-Image slider. 
+Image slider.
 
 == Description ==
 
-Carousel slider that displays a large main image that has a title, content, and links. Along each side are smaller images showing previous and next images.  The links are capable of being connected to external locations such as stores with products. There are six available in two rows of three. They can be individually in whatever location that is desired. 
+SB Slider is a simple carousel that displays a large main image with a title, content, and up to six configurable store/product links arranged in two rows of three. Thumbnail previews are shown alongside the main image for navigation.
 
-It is required that a thumbnail regnerating plugin is used before first use, otherwise the main image will default to the full image size. This will generate the main image thumbnail. Such plugins would be like the recommended Regnerate Thumbnails by Alex Mills. There are others that dan be used like Force Regenerate Thumbnails by Exacly WWW.
+Note: To ensure the main image thumbnail is generated correctly, please regenerate thumbnails after installing the plugin if your theme or environment does not automatically create the required image size. For example, the "Regenerate Thumbnails" plugin is commonly used for this purpose.
 
 == Installation ==
 
-1. Go to your admin area and select Plugins -> Add new from the menu.
-2. Search for "SB Slider".
-3. Click install.
-4. Click activate.
-
+1. Upload the `sb-slider` folder to the `/wp-content/plugins/` directory, or install via the Plugins -> Add New interface.
+2. Activate the plugin through the 'Plugins' menu in WordPress.
 
 == Screenshots ==
 
+1. Main carousel with thumbnail navigator and store buttons.
 
-== ChangeLog ==
+== Frequently Asked Questions ==
 
-1.0 initial release
+= Do I need to regenerate thumbnails?
+If your site does not produce the `sb_slider_main_img` image size automatically, regenerate thumbnails after activating the plugin to produce the correct sizes.
+
+== Changelog ==
+
+= 1.0
+* Initial release
