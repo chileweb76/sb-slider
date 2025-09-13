@@ -6,7 +6,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
     global $orderby;
 
     $args = [
-        'post_type'   => 'scrapbook-slider',
+        'post_type'   => 'sb_slider',
         'post_status' => 'publish',
         'post__in'    => $id,
         'orderby'     => $orderby,
@@ -65,7 +65,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
         <?php
         foreach ($sb_thumbnail as $sb_thumbnails) {
             $src = isset($sb_thumbnails[0]) ? esc_url( $sb_thumbnails[0] ) : '';
-            echo '<img class="sb_thumbnail_left remove" src="' . $src . '" />';
+            echo '<img class="sb_thumbnail_left remove" src="' . $src . '" alt="" />';
         }
         ?>
         </div>
@@ -75,7 +75,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
                 <?php
                 foreach ($sb_main_image as $sb_main_images) {
                     $src = isset($sb_main_images[0]) ? esc_url( $sb_main_images[0] ) : '';
-                    echo '<div><img class="sb_main_image remove" src="' . $src . '" /></div>';
+                    echo '<div><img class="sb_main_image remove" src="' . $src . '" alt="" /></div>';
                 }
                 ?>
             </div>

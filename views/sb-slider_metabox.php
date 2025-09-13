@@ -22,7 +22,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
     <?php wp_nonce_field( 'sb_slider_nonce', 'sb_slider_nonce' ); ?>
     <tr>
         <th>
-            <label for="sb_slider_link_text_left"><?php esc_html_e('Left Button Text', 'scrapbook-slider')?></label>
+            <label for="sb_slider_link_text_left"><?php esc_html_e('Left Button Text', 'sb-slider')?></label>
         </th>
         <td>
             <input
@@ -36,7 +36,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
     </tr>
     <tr>
         <th>
-            <label for="sb_slider_link_url_left"><?php esc_html_e('Left Button Url', 'scrapbook-slider')?></label>
+            <label for="sb_slider_link_url_left"><?php esc_html_e('Left Button Url', 'sb-slider')?></label>
         </th>
         <td>
             <input
@@ -50,7 +50,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
     </tr>
     <tr>
         <th>
-            <label for="sb_slider_link_text_center"><?php esc_html_e('Center Button Text', 'scrapbook-slider')?></label>
+            <label for="sb_slider_link_text_center"><?php esc_html_e('Center Button Text', 'sb-slider')?></label>
         </th>
         <td>
             <input
@@ -64,7 +64,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
     </tr>
     <tr>
         <th>
-            <label for="sb_slider_link_url_center"><?php esc_html_e('Center Button Url', 'scrapbook-slider')?></label>
+            <label for="sb_slider_link_url_center"><?php esc_html_e('Center Button Url', 'sb-slider')?></label>
         </th>
         <td>
             <input
@@ -78,7 +78,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
     </tr>
     <tr>
         <th>
-            <label for="sb_slider_link_text_right"><?php esc_html_e('Right Button Text', 'scrapbook-slider')?></label>
+            <label for="sb_slider_link_text_right"><?php esc_html_e('Right Button Text', 'sb-slider')?></label>
         </th>
         <td>
             <input
@@ -92,7 +92,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
     </tr>
     <tr>
         <th>
-            <label for="sb_slider_link_url_right"><?php esc_html_e('Right Button Url', 'scrapbook-slider')?></label>
+            <label for="sb_slider_link_url_right"><?php esc_html_e('Right Button Url', 'sb-slider')?></label>
         </th>
         <td>
             <input
@@ -106,7 +106,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
     </tr>
     <tr>
         <th>
-            <label for="sb_slider_link_text_bottom_left"><?php esc_html_e('Bottom Left Button Text', 'scrapbook-slider')?></label>
+            <label for="sb_slider_link_text_bottom_left"><?php esc_html_e('Bottom Left Button Text', 'sb-slider')?></label>
         </th>
         <td>
             <input
@@ -120,7 +120,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
     </tr>
     <tr>
         <th>
-            <label for="sb_slider_link_url_bottom_left"><?php esc_html_e('Bottom Left Button Url', 'scrapbook-slider')?></label>
+            <label for="sb_slider_link_url_bottom_left"><?php esc_html_e('Bottom Left Button Url', 'sb-slider')?></label>
         </th>
         <td>
             <input
@@ -134,7 +134,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
     </tr>
     <tr>
         <th>
-            <label for="sb_slider_link_text_bottom_center"><?php esc_html_e('Bottom Center Button Text', 'scrapbook-slider')?></label>
+            <label for="sb_slider_link_text_bottom_center"><?php esc_html_e('Bottom Center Button Text', 'sb-slider')?></label>
         </th>
         <td>
             <input
@@ -148,7 +148,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
     </tr>
     <tr>
         <th>
-            <label for="sb_slider_link_url_bottom_center"><?php esc_html_e('Bottom Center Button Url', 'scrapbook-slider')?></label>
+            <label for="sb_slider_link_url_bottom_center"><?php esc_html_e('Bottom Center Button Url', 'sb-slider')?></label>
         </th>
         <td>
             <input
@@ -162,7 +162,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
     </tr>
     <tr>
         <th>
-            <label for="sb_slider_link_text_bottom_right"><?php esc_html_e('Bottom Right Button Text', 'scrapbook-slider')?></label>
+            <label for="sb_slider_link_text_bottom_right"><?php esc_html_e('Bottom Right Button Text', 'sb-slider')?></label>
         </th>
         <td>
             <input
@@ -176,7 +176,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
     </tr>
     <tr>
         <th>
-            <label for="sb_slider_link_url_bottom_right"><?php esc_html_e('Bottom Right Button Url', 'scrapbook-slider')?></label>
+            <label for="sb_slider_link_url_bottom_right"><?php esc_html_e('Bottom Right Button Url', 'sb-slider')?></label>
         </th>
         <td>
             <input

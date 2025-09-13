@@ -1,29 +1,29 @@
-.scrapbook_button1_color {
+.sb_button1_color {
   background-color: #26547C;
   color: Black;
 }
 
-.scrapbook_button2_color {
+.sb_button2_color {
   background-color: #EF476F;
   color: Black;
 }
 
-.scrapbook_button3_color {
+.sb_button3_color {
   background-color: #FFD166;
   color: Black;
 }
 
-.scrapbook_button4_color {
+.sb_button4_color {
   background-color: #06D6A0;
   color: Black;
 }
 
-.scrapbook_button5_color {
+.sb_button5_color {
   background-color: #FFFCF9;
   color: Black;
 }
 
-.scrapbook_button6_color {
+.sb_button6_color {
   background-color: #A14EBF;
   color: Black;
 }
@@ -32,36 +32,36 @@ p {
   font-size: 0.9rem;
 }
 
-.scrapbook_main {
+.sb_main {
   text-align: center;
   margin-left: 2rem;
   margin-right: 2rem;
 }
 
 @media only screen and (max-width: 1080px) {
-  .scrapbook_main {
+  .sb_main {
     margin-left: 1rem;
     margin-right: 1rem;
   }
 }
-.scrapbook_carousel {
+.sb_carousel {
   display: flex;
   justify-content: center;
   height: 680px;
 }
 
-.scrapbook_main_image {
+.sb_main_image {
   margin-top: 1rem;
   margin-bottom: 1rem;
 }
 
-.scrapbook_thumbnail {
+.sb_thumbnail {
   display: flex;
   align-items: center;
 }
 
 @media only screen and (max-width: 1023px) {
-  .scrapbook_thumbnail {
+  .sb_thumbnail {
     display: none;
   }
 }
@@ -69,12 +69,12 @@ p {
   display: none;
 }
 
-.scrapbook_button1,
-.scrapbook_button2,
-.scrapbook_button3,
-.scrapbook_button4,
-.scrapbook_button5,
-.scrapbook_button6 {
+.sb_button1,
+.sb_button2,
+.sb_button3,
+.sb_button4,
+.sb_button5,
+.sb_button6 {
   text-decoration: none;
   font-size: 1rem;
   margin: 0.5rem;
@@ -83,37 +83,37 @@ p {
   padding-bottom: 0.5rem;
 }
 
-.scrapbook_button1 {
+.sb_button1 {
   grid-area: button1;
   text-align: center;
 }
 
-.scrapbook_button2 {
+.sb_button2 {
   grid-area: button2;
   text-align: center;
 }
 
-.scrapbook_button3 {
+.sb_button3 {
   grid-area: button3;
   text-align: center;
 }
 
-.scrapbook_button4 {
+.sb_button4 {
   grid-area: button4;
   text-align: center;
 }
 
-.scrapbook_button5 {
+.sb_button5 {
   grid-area: button5;
   text-align: center;
 }
 
-.scrapbook_button6 {
+.sb_button6 {
   grid-area: button6;
   text-align: center;
 }
 
-.scrapbook_store_buttons {
+.sb_store_buttons {
   display: grid;
   grid-template-columns: 153px 154px 153px;
   grid-template-rows: auto;
@@ -134,16 +134,16 @@ p {
   cursor: pointer;
 }
 
-.scrapbook_image_scroll {
+.sb_image_scroll {
   display: flex;
   align-items: center;
 }
 
-.scrapbook_button1_color:hover,
-.scrapbook_button2_color:hover,
-.scrapbook_button3_color:hover,
-.scrapbook_button4_color:hover,
-.scrapbook_button5_color:hover,
-.scrapbook_button6_color:hover {
+.sb_button1_color:hover,
+.sb_button2_color:hover,
+.sb_button3_color:hover,
+.sb_button4_color:hover,
+.sb_button5_color:hover,
+.sb_button6_color:hover {
   box-shadow: 10px 10px 20px rgba(36, 36, 36, 0.5);
 }/*# sourceMappingURL=style.css.map */

@@ -73,7 +73,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
                 add_settings_field(
                     'sb_slider_color',
-                    esc_html__('Color Changes', 'scrapbook-slider'),
+                    esc_html__('Color Changes', 'sb-slider'),
                     [$this, 'sb_slider_color_callback'],
                     'sb_slider_page2',
                     'sb_slider_second_section'
@@ -81,7 +81,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
                 add_settings_field(
                     'sb_slider_color_left',
-                    esc_html__('Left Button Color', 'scrapbook-slider'),
+                    esc_html__('Left Button Color', 'sb-slider'),
                     [$this, 'sb_slider_color_left_callback'],
                     'sb_slider_page2',
                     'sb_slider_second_section',
@@ -90,7 +90,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
                 add_settings_field(
                     'sb_slider_left_font_color',
-                    esc_html__('Font Color', 'scrapbook-slider'),
+                    esc_html__('Font Color', 'sb-slider'),
                     [$this, 'sb_slider_left_font_color_callback'],
                     'sb_slider_page2',
                     'sb_slider_second_section',
@@ -106,7 +106,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
                 add_settings_field(
                     'sb_slider_color_center',
-                    esc_html__('Center Button Color', 'scrapbook-slider'),
+                    esc_html__('Center Button Color', 'sb-slider'),
                     [$this, 'sb_slider_color_center_callback'],
                     'sb_slider_page2',
                     'sb_slider_second_section',
@@ -115,7 +115,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
                 add_settings_field(
                     'sb_slider_center_font_color',
-                    esc_html__('Font Color', 'scrapbook-slider'),
+                    esc_html__('Font Color', 'sb-slider'),
                     [$this, 'sb_slider_center_font_color_callback'],
                     'sb_slider_page2',
                     'sb_slider_second_section',
@@ -131,7 +131,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
                 add_settings_field(
                     'sb_slider_color_right',
-                    esc_html__('Right Button Color', 'scrapbook-slider'),
+                    esc_html__('Right Button Color', 'sb-slider'),
                     [$this, 'sb_slider_color_right_callback'],
                     'sb_slider_page2',
                     'sb_slider_second_section',
@@ -140,7 +140,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
                 add_settings_field(
                     'sb_slider_right_font_color',
-                    esc_html__('Font Color', 'scrapbook-slider'),
+                    esc_html__('Font Color', 'sb-slider'),
                     [$this, 'sb_slider_right_font_color_callback'],
                     'sb_slider_page2',
                     'sb_slider_second_section',
@@ -155,7 +155,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
                 add_settings_field(
                     'sb_slider_color_bottom_left',
-                    esc_html__('Bottom Left Button Color', 'scrapbook-slider'),
+                    esc_html__('Bottom Left Button Color', 'sb-slider'),
                     [$this, 'sb_slider_color_bottom_left_callback'],
                     'sb_slider_page2',
                     'sb_slider_second_section',
@@ -164,7 +164,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
                 add_settings_field(
                     'sb_slider_bottom_left_font_color',
-                    esc_html__('Font Color', 'scrapbook-slider'),
+                    esc_html__('Font Color', 'sb-slider'),
                     [$this, 'sb_slider_bottom_left_font_color_callback'],
                     'sb_slider_page2',
                     'sb_slider_second_section',
@@ -180,7 +180,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
                 add_settings_field(
                     'sb_slider_color_bottom_center',
-                    esc_html__('Bottom Center Button Color', 'scrapbook-slider'),
+                    esc_html__('Bottom Center Button Color', 'sb-slider'),
                     [$this, 'sb_slider_color_bottom_center_callback'],
                     'sb_slider_page2',
                     'sb_slider_second_section',
@@ -189,7 +189,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
                 add_settings_field(
                     'sb_slider_bottom_center_font_color',
-                    esc_html__('Font Color', 'scrapbook-slider'),
+                    esc_html__('Font Color', 'sb-slider'),
                     [$this, 'sb_slider_bottom_center_font_color_callback'],
                     'sb_slider_page2',
                     'sb_slider_second_section',
@@ -205,7 +205,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
                 add_settings_field(
                     'sb_slider_color_bottom_right',
-                    esc_html__('Bottom Right Button Color', 'scrapbook-slider'),
+                    esc_html__('Bottom Right Button Color', 'sb-slider'),
                     [$this, 'sb_slider_color_bottom_right_callback'],
                     'sb_slider_page2',
                     'sb_slider_second_section',
@@ -214,7 +214,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
                 add_settings_field(
                     'sb_slider_bottom_right_font_color',
-                    esc_html__('Font Color', 'scrapbook-slider'),
+                    esc_html__('Font Color', 'sb-slider'),
                     [$this, 'sb_slider_bottom_right_font_color_callback'],
                     'sb_slider_page2',
                     'sb_slider_second_section',
