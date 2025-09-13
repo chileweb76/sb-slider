@@ -12,31 +12,44 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
         'orderby'     => $orderby,
     ];
 
+    // Initialize arrays to avoid undefined variable warnings
+    $button_text_left = $button_text_center = $button_text_right = [];
+    $button_text_bottom_left = $button_text_bottom_center = $button_text_bottom_right = [];
+    $button_url_left = $button_url_center = $button_url_right = [];
+    $button_url_bottom_left = $button_url_bottom_center = $button_url_bottom_right = [];
+    $sb_title = $sb_content = $sb_main_image = $sb_thumbnail = [];
+
     $my_query = new WP_Query($args);
     global $post;
 
     if ($my_query->have_posts()):
         while ($my_query->have_posts()): $my_query->the_post();
 
-            $button_text_left[]          = get_post_meta(get_the_ID(), 'sb_slider_link_text_left');
-            $button_text_center[]        = get_post_meta(get_the_ID(), 'sb_slider_link_text_center');
-            $button_text_right[]         = get_post_meta(get_the_ID(), 'sb_slider_link_text_right');
-            $button_text_bottom_left[]   = get_post_meta(get_the_ID(), 'sb_slider_link_text_bottom_left');
-            $button_text_bottom_center[] = get_post_meta(get_the_ID(), 'sb_slider_link_text_bottom_center');
-            $button_text_bottom_right[]  = get_post_meta(get_the_ID(), 'sb_slider_link_text_bottom_right');
+                $post_id = (int) get_the_ID();
+                $button_text_left[]          = get_post_meta($post_id, 'sb_slider_link_text_left');
+                $button_text_center[]        = get_post_meta($post_id, 'sb_slider_link_text_center');
+                $button_text_right[]         = get_post_meta($post_id, 'sb_slider_link_text_right');
+                $button_text_bottom_left[]   = get_post_meta($post_id, 'sb_slider_link_text_bottom_left');
+                $button_text_bottom_center[] = get_post_meta($post_id, 'sb_slider_link_text_bottom_center');
+                $button_text_bottom_right[]  = get_post_meta($post_id, 'sb_slider_link_text_bottom_right');
 
-            $button_url_left[]          = get_post_meta(get_the_ID(), 'sb_slider_link_url_left');
-            $button_url_center[]        = get_post_meta(get_the_ID(), 'sb_slider_link_url_center');
-            $button_url_right[]         = get_post_meta(get_the_ID(), 'sb_slider_link_url_right');
-            $button_url_bottom_left[]   = get_post_meta(get_the_ID(), 'sb_slider_link_url_bottom_left');
-            $button_url_bottom_center[] = get_post_meta(get_the_ID(), 'sb_slider_link_url_bottom_center');
-            $button_url_bottom_right[]  = get_post_meta(get_the_ID(), 'sb_slider_link_url_bottom_right');
+            $button_url_left[]          = get_post_meta($post_id, 'sb_slider_link_url_left');
+            $button_url_center[]        = get_post_meta($post_id, 'sb_slider_link_url_center');
+            $button_url_right[]         = get_post_meta($post_id, 'sb_slider_link_url_right');
+            $button_url_bottom_left[]   = get_post_meta($post_id, 'sb_slider_link_url_bottom_left');
+            $button_url_bottom_center[] = get_post_meta($post_id, 'sb_slider_link_url_bottom_center');
+            $button_url_bottom_right[]  = get_post_meta($post_id, 'sb_slider_link_url_bottom_right');
 
             $sb_title[]      = get_the_title();
             $sb_content[]    = get_the_content();
-            $image_id        = get_post_thumbnail_id($post->ID);
-            $sb_main_image[] = wp_get_attachment_image_src($image_id, 'sb_main_img');
-            $sb_thumbnail[]  = wp_get_attachment_image_src($image_id, 'medium');
+            $image_id = (int) get_post_thumbnail_id($post_id);
+            if ($image_id > 0) {
+                $sb_main_image[] = wp_get_attachment_image_src($image_id, 'sb_main_img');
+                $sb_thumbnail[]  = wp_get_attachment_image_src($image_id, 'medium');
+            } else {
+                $sb_main_image[] = [];
+                $sb_thumbnail[]  = [];
+            }
         ?>
 		<div class="index"><?php the_title()?></div>
 		<?php
@@ -125,9 +138,10 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
         </article>
             <div class="sb_thumbnail">
             <?php
-            foreach ($sb_thumbnail as $sb_thumbnails) {?>
-                <img class="sb_thumbnail_right remove" src="<?php echo esc_html__($sb_thumbnails[0], 'scrapbook-slider') ?>" />
-
-            <?php }?>
+            foreach ( $sb_thumbnail as $sb_thumbnails ) {
+                $src = isset( $sb_thumbnails[0] ) ? esc_url( $sb_thumbnails[0] ) : '';
+                echo '<img class="sb_thumbnail_right remove" src="' . $src . '" alt="" />';
+            }
+            ?>
             </div>
     </section>

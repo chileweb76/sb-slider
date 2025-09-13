@@ -5,26 +5,24 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 if (! class_exists('SB_Slider_Post_Type')) {
     class SB_Slider_Post_Type
     {
-        public function __construct()
+    public function __construct()
         {
             add_action('init', [$this, 'create_post_type']);
             add_action('add_meta_boxes', [$this, 'add_meta_boxes']);
             add_action('save_post', [$this, 'save_post'], 10, 2);
             add_filter('manage_sb_slider_posts_columns', [$this, 'sb_slider_cpt_columns']);
-            add_action('manage_sb_slider_posts_custom_column', [$this, 'sb_slider_custom_columns'], 10, 6);
+            add_action('manage_sb_slider_posts_custom_column', [$this, 'sb_slider_custom_columns'], 10, 2);
             add_filter('manage_edit-sb_slider_sortable_columns', [$this, 'sb_slider_sortable_columns']);
         }
 
-        public function create_post_type()
+    public function create_post_type(): void
         {
             register_post_type(
                 'sb_slider',
                 [
-                    'label'               => esc_html__('Slider', 'sb-slider'),
-                    'description'         => esc_html__('Sliders', 'sb-slider'),
                     'labels'              => [
-                        'name'          => esc_html__('Sliders', 'sb-slider'),
-                        'singular_name' => esc_html__('Slider', 'sb-slider'),
+                            'name'          => esc_html__('SB Sliders', 'sb-slider'),
+                            'singular_name' => esc_html__('SB Slider', 'sb-slider'),
                     ],
                     'public'              => true,
                     'supports'            => ['title', 'editor', 'thumbnail'],
@@ -45,26 +43,35 @@ if (! class_exists('SB_Slider_Post_Type')) {
             );
         }
 
-        public function sb_slider_cpt_columns($columns)
+    /**
+     * @param array<string,string> $columns
+     * @return array<string,string>
+     */
+    public function sb_slider_cpt_columns(array $columns): array
         {
-            $columns['sb_slider_link_text_left']   = esc_html__('Left Link Text', 'scrapbook-slider');
-            $columns['sb_slider_link_url_left']    = esc_html__('Left Link URL', 'scrapbook-slider');
-            $columns['sb_slider_link_text_center'] = esc_html__('Center Link Text', 'scrapbook-slider');
-            $columns['sb_slider_link_url_center']  = esc_html__('Center Link URL', 'scrapbook-slider');
-            $columns['sb_slider_link_text_right']  = esc_html__('Right Link Text', 'scrapbook-slider');
-            $columns['sb_slider_link_url_right']   = esc_html__('Right Link URL', 'scrapbook-slider');
+            $columns['sb_slider_link_text_left']   = esc_html__('Left Link Text', 'sb-slider');
+            $columns['sb_slider_link_url_left']    = esc_html__('Left Link URL', 'sb-slider');
+            $columns['sb_slider_link_text_center'] = esc_html__('Center Link Text', 'sb-slider');
+            $columns['sb_slider_link_url_center']  = esc_html__('Center Link URL', 'sb-slider');
+            $columns['sb_slider_link_text_right']  = esc_html__('Right Link Text', 'sb-slider');
+            $columns['sb_slider_link_url_right']   = esc_html__('Right Link URL', 'sb-slider');
 
-            $columns['sb_slider_link_text_bottom_left']   = esc_html__('Bottom Left Link Text', 'scrapbook-slider');
-            $columns['sb_slider_link_url_bottom_left']    = esc_html__('Bottom Left Link URL', 'scrapbook-slider');
-            $columns['sb_slider_link_text_bottom_center'] = esc_html__('Bottom Center Link Text', 'scrapbook-slider');
-            $columns['sb_slider_link_url_bottom_center']  = esc_html__('Bottom Center Link URL', 'scrapbook-slider');
-            $columns['sb_slider_link_text_bottom_right']  = esc_html__('Bottom Right Link Text', 'scrapbook-slider');
-            $columns['sb_slider_link_url_bottom_right']   = esc_html__('Bottom Right Link URL', 'scrapbook-slider');
+            $columns['sb_slider_link_text_bottom_left']   = esc_html__('Bottom Left Link Text', 'sb-slider');
+            $columns['sb_slider_link_url_bottom_left']    = esc_html__('Bottom Left Link URL', 'sb-slider');
+            $columns['sb_slider_link_text_bottom_center'] = esc_html__('Bottom Center Link Text', 'sb-slider');
+            $columns['sb_slider_link_url_bottom_center']  = esc_html__('Bottom Center Link URL', 'sb-slider');
+            $columns['sb_slider_link_text_bottom_right']  = esc_html__('Bottom Right Link Text', 'sb-slider');
+            $columns['sb_slider_link_url_bottom_right']   = esc_html__('Bottom Right Link URL', 'sb-slider');
             return $columns;
 
         }
 
-        public function sb_slider_custom_columns($column, $post_id)
+    /**
+     * @param string $column
+     * @param int $post_id
+     * @return void
+     */
+    public function sb_slider_custom_columns(string $column, int $post_id): void
         {
             switch ($column) {
                 case 'sb_slider_link_text_left':
@@ -106,18 +113,22 @@ if (! class_exists('SB_Slider_Post_Type')) {
             }
         }
 
-        public function sb_slider_sortable_columns($colums)
+    /**
+     * @param array<string,string> $columns
+     * @return array<string,string>
+     */
+    public function sb_slider_sortable_columns(array $columns): array
         {
-            $columns['sb_slider_link_text_left']          = esc_html__('sb_slider_link_text_left', 'scrapbook-slider');
-            $columns['sb_slider_link_text_center']        = esc_html__('sb_slider_link_text_center', 'scrapbook-slider');
-            $columns['sb_slider_link_text_right']         = esc_html__('sb_slider_link_text_right', 'scrapbook-slider');
-            $columns['sb_slider_link_text_bottom_left']   = esc_html__('sb_slider_link_text_bottom_left', 'scrapbook-slider');
-            $columns['sb_slider_link_text_bottom_center'] = esc_html__('sb_slider_link_text_bottom_center', 'scrapbook-slider');
-            $columns['sb_slider_link_text_bottom_right']  = esc_html__('sb_slider_link_text_bottom_right', 'scrapbook-slider');
+            $columns['sb_slider_link_text_left']          = 'sb_slider_link_text_left';
+            $columns['sb_slider_link_text_center']        = 'sb_slider_link_text_center';
+            $columns['sb_slider_link_text_right']         = 'sb_slider_link_text_right';
+            $columns['sb_slider_link_text_bottom_left']   = 'sb_slider_link_text_bottom_left';
+            $columns['sb_slider_link_text_bottom_center'] = 'sb_slider_link_text_bottom_center';
+            $columns['sb_slider_link_text_bottom_right']  = 'sb_slider_link_text_bottom_right';
             return $columns;
         }
 
-        public function add_meta_boxes()
+    public function add_meta_boxes(): void
         {
             add_meta_box(
                 'sb_slider_meta_box',
@@ -129,12 +140,16 @@ if (! class_exists('SB_Slider_Post_Type')) {
             );
         }
 
-        public function add_inner_meta_boxes($post)
+        /**
+         * @param \WP_Post|null $post
+         * @return void
+         */
+        public function add_inner_meta_boxes($post = null): void
         {
             require_once SB_SLIDER_PATH . 'views/sb-slider_metabox.php';
         }
 
-        public function save_post($post_id)
+    public function save_post(int $post_id, ?\WP_Post $post = null): void
         {
 
             // Check if this is an autosave

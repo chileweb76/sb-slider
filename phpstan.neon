@@ -1,0 +1,14 @@
+parameters:
+    level: 7
+    paths:
+        - post-types
+        - views
+        - .
+    excludePaths:
+        - vendor
+        - languages
+        - css
+        - sb-slider_carousel
+    bootstrapFiles:
+        - %currentWorkingDirectory%/phpstan-bootstrap.php
+    
