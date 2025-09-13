@@ -9,7 +9,7 @@ Packaging checklist for WordPress.org submission
    - No files should write into the plugin directory (use uploads or DB instead).
 
 3) i18n and readme
-   - Confirm `Text Domain` in plugin header is `scrapbook-slider` and matches `load_plugin_textdomain()` and `readme.txt`.
+   - Confirm `Text Domain` in plugin header is `sb-slider` and matches `load_plugin_textdomain()` and `readme.txt`.
    - Include a proper `readme.txt` following the WordPress.org readme standard.
 
 4) Assets and build

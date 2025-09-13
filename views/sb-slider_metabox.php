@@ -1,6 +1,11 @@
 
 <?php
+/**
+ * Metabox view for SB Slider post type
+ * @var WP_Post $post
+ */
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+global $post;
     $meta = get_post_meta($post->ID);
 
     $link_text_left          = get_post_meta($post->ID, 'sb_slider_link_text_left', true);

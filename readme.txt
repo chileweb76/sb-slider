@@ -1,10 +1,10 @@
-=== Scrapbook Slider ===
+=== SB Slider ===
 Requires at least: 6.8
 Tested up to: 6.8
 Requires PHP: 8.3
 Stable tag: 1.0
 License: GPLv2
-Tags: carousel, slider, scrapbook
+Tags: carousel, slider
 
 Image slider. 
 
@@ -17,7 +17,7 @@ It is required that a thumbnail regnerating plugin is used before first use, oth
 == Installation ==
 
 1. Go to your admin area and select Plugins -> Add new from the menu.
-2. Search for "Scrapbook Slider".
+2. Search for "SB Slider".
 3. Click install.
 4. Click activate.
 

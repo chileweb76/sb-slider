@@ -7,6 +7,6 @@ Recommended files/folders to remove before submitting to WordPress.org:
 - .git/                  -> Git history not needed in zip.
 - *.phar, *.dist, *.md   -> Large packaging or developer files not required for runtime.
 
-Note: I did not find a `vendor/` directory in this workspace, but the WordPress review mentioned vendor files. If you have a copy in another branch or subfolder (e.g., `scrapbook-slider/vendor/...`) remove it before packaging.
+Note: I did not find a `vendor/` directory in this workspace, but the WordPress review mentioned vendor files. If you have a copy in another branch or subfolder (e.g., `sb-slider/vendor/...`) remove it before packaging.
 
 Also included a `.distignore` file to help exclude many of these when using `wp dist-archive`.
