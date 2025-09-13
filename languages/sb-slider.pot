@@ -1,147 +1,274 @@
+# Copyright (C) 2025 Christopher Hile
+# This file is distributed under the GPL v2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: sb-slider 1.0\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-13 00:00+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Project-Id-Version: SB Slider 1.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/sb-slider\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: English <LL@li.org>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: sb-slider i18n script\n"
+"POT-Creation-Date: 2025-09-13T18:05:43+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: sb-slider\n"
 
-# Admin menu and pages
-msgid "Scrapbook Slider Options"
+#. Plugin Name of the plugin
+#: sb-slider.php
+#: post-types/class.sb-slider-cpt.php:25
+msgid "SB Slider"
 msgstr ""
 
-msgid "Scrapbook Sliders"
+#. Description of the plugin
+#: sb-slider.php
+msgid "A slider designed to show the latest product with buttons to go to stores for purchase."
 msgstr ""
 
-msgid "Manage Slides"
+#. Author of the plugin
+#: sb-slider.php
+msgid "Christopher Hile"
 msgstr ""
 
-msgid "Add New Slides"
+#. Author URI of the plugin
+#: sb-slider.php
+msgid "https://christopherhile.com"
 msgstr ""
 
-msgid "Settings Saved"
-msgstr ""
-
-# Settings sections and fields
+#: class.sb-slider-settings.php:31
 msgid "How does it work?"
 msgstr ""
 
+#: class.sb-slider-settings.php:38
 msgid "Button Color Options"
 msgstr ""
 
+#: class.sb-slider-settings.php:47
 msgid "Shortcode"
 msgstr ""
 
+#: class.sb-slider-settings.php:55
 msgid "Instructions"
 msgstr ""
 
+#: class.sb-slider-settings.php:65
 msgid "Slider Title"
 msgstr ""
 
+#: class.sb-slider-settings.php:76
 msgid "Color Changes"
 msgstr ""
 
+#: class.sb-slider-settings.php:84
 msgid "Left Button Color"
 msgstr ""
 
+#: class.sb-slider-settings.php:93
+#: class.sb-slider-settings.php:118
+#: class.sb-slider-settings.php:143
+#: class.sb-slider-settings.php:167
+#: class.sb-slider-settings.php:192
+#: class.sb-slider-settings.php:217
 msgid "Font Color"
 msgstr ""
 
+#: class.sb-slider-settings.php:109
 msgid "Center Button Color"
 msgstr ""
 
+#: class.sb-slider-settings.php:134
 msgid "Right Button Color"
 msgstr ""
 
+#: class.sb-slider-settings.php:158
 msgid "Bottom Left Button Color"
 msgstr ""
 
+#: class.sb-slider-settings.php:183
 msgid "Bottom Center Button Color"
 msgstr ""
 
+#: class.sb-slider-settings.php:208
 msgid "Bottom Right Button Color"
 msgstr ""
 
+#: class.sb-slider-settings.php:262
 msgid "Use the shortcode [sb_slider] to display in any page/post/widget."
 msgstr ""
 
+#: class.sb-slider-settings.php:269
 msgid "Please download a regenerate thumbnail plugin."
 msgstr ""
 
+#: class.sb-slider-settings.php:270
 msgid "This is needed to setup main image correctly."
 msgstr ""
 
+#: class.sb-slider-settings.php:277
 msgid "Use hex code to input color."
 msgstr ""
 
-# Post type labels and columns
-msgid "Slider"
+#: class.sb-slider-settings.php:470
+msgid "The title field can not be left empty"
 msgstr ""
 
-msgid "Sliders"
+#: class.sb-slider-settings.php:471
+msgid "Please, type some text"
 msgstr ""
 
+#: post-types/class.sb-slider-cpt.php:24
+#: sb-slider.php:92
+msgid "SB Sliders"
+msgstr ""
+
+#: post-types/class.sb-slider-cpt.php:48
 msgid "Left Link Text"
 msgstr ""
 
+#: post-types/class.sb-slider-cpt.php:49
 msgid "Left Link URL"
 msgstr ""
 
+#: post-types/class.sb-slider-cpt.php:50
 msgid "Center Link Text"
 msgstr ""
 
+#: post-types/class.sb-slider-cpt.php:51
 msgid "Center Link URL"
 msgstr ""
 
+#: post-types/class.sb-slider-cpt.php:52
 msgid "Right Link Text"
 msgstr ""
 
+#: post-types/class.sb-slider-cpt.php:53
 msgid "Right Link URL"
 msgstr ""
 
+#: post-types/class.sb-slider-cpt.php:55
 msgid "Bottom Left Link Text"
 msgstr ""
 
+#: post-types/class.sb-slider-cpt.php:56
 msgid "Bottom Left Link URL"
 msgstr ""
 
+#: post-types/class.sb-slider-cpt.php:57
 msgid "Bottom Center Link Text"
 msgstr ""
 
+#: post-types/class.sb-slider-cpt.php:58
 msgid "Bottom Center Link URL"
 msgstr ""
 
+#: post-types/class.sb-slider-cpt.php:59
 msgid "Bottom Right Link Text"
 msgstr ""
 
+#: post-types/class.sb-slider-cpt.php:60
 msgid "Bottom Right Link URL"
 msgstr ""
-# Blank WordPress Pot
-# Copyright 2014 ...
-# This file is distributed under the GNU General Public License v3 or later.
-msgid ""
+
+#: post-types/class.sb-slider-cpt.php:109
+msgid "sb_slider_link_text_left"
 msgstr ""
-"Project-Id-Version: Blank WordPress Pot v1.0.0\n"
-"POT-Creation-Date: 2012-10-05 10:50+0100\n"
-"PO-Revision-Date: \n"
-"Last-Translator: Your Name <you@example.com>\n"
-"Language-Team: Your Team <translations@example.com>\n"
-"Report-Msgid-Bugs-To: Translator Name <translations@example.com>\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Textdomain-Support: yes"
-"X-Generator: Poedit 1.6.4\n"
-"X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-KeywordsList: __;_e;esc_html_e;esc_html_x:1,2c;esc_html__;esc_attr_e;esc_attr_x:1,2c;esc_attr__;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;_x:1,2c;_n:1,2;_n_noop:1,2;__ngettext:1,2;__ngettext_noop:1,2;_c,_nc:4c,1,2;\n"
-"X-Poedit-Basepath: ../\n"
-"X-Poedit-SearchPath-0: .\n"
-"X-Poedit-Language: English\n"
-"X-Poedit-Country: UNITED STATES\n"
-"X-Poedit-Bookmarks: \n"
+
+#: post-types/class.sb-slider-cpt.php:110
+msgid "sb_slider_link_text_center"
+msgstr ""
+
+#: post-types/class.sb-slider-cpt.php:111
+msgid "sb_slider_link_text_right"
+msgstr ""
+
+#: post-types/class.sb-slider-cpt.php:112
+msgid "sb_slider_link_text_bottom_left"
+msgstr ""
+
+#: post-types/class.sb-slider-cpt.php:113
+msgid "sb_slider_link_text_bottom_center"
+msgstr ""
+
+#: post-types/class.sb-slider-cpt.php:114
+msgid "sb_slider_link_text_bottom_right"
+msgstr ""
+
+#: post-types/class.sb-slider-cpt.php:122
+msgid "Link Options"
+msgstr ""
+
+#: sb-slider.php:91
+msgid "SB Slider Options"
+msgstr ""
+
+#: sb-slider.php:99
+msgid "Manage Slides"
+msgstr ""
+
+#: sb-slider.php:100
+msgid "Add New Slides"
+msgstr ""
+
+#: sb-slider.php:109
+msgid "Settings Saved"
+msgstr ""
+
+#: views/sb-slider_metabox.php:25
+msgid "Left Button Text"
+msgstr ""
+
+#: views/sb-slider_metabox.php:39
+msgid "Left Button Url"
+msgstr ""
+
+#: views/sb-slider_metabox.php:53
+msgid "Center Button Text"
+msgstr ""
+
+#: views/sb-slider_metabox.php:67
+msgid "Center Button Url"
+msgstr ""
+
+#: views/sb-slider_metabox.php:81
+msgid "Right Button Text"
+msgstr ""
+
+#: views/sb-slider_metabox.php:95
+msgid "Right Button Url"
+msgstr ""
+
+#: views/sb-slider_metabox.php:109
+msgid "Bottom Left Button Text"
+msgstr ""
+
+#: views/sb-slider_metabox.php:123
+msgid "Bottom Left Button Url"
+msgstr ""
+
+#: views/sb-slider_metabox.php:137
+msgid "Bottom Center Button Text"
+msgstr ""
+
+#: views/sb-slider_metabox.php:151
+msgid "Bottom Center Button Url"
+msgstr ""
+
+#: views/sb-slider_metabox.php:165
+msgid "Bottom Right Button Text"
+msgstr ""
+
+#: views/sb-slider_metabox.php:179
+msgid "Bottom Right Button Url"
+msgstr ""
+
+#: views/settings-page.php:14
+msgid "Main"
+msgstr ""
+
+#: views/settings-page.php:15
+msgid "Color Options"
+msgstr ""
+
+#: views/settings-page.php:31
+msgid "Save Settings"
+msgstr ""
